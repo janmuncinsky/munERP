@@ -3,10 +3,13 @@ version: '3'
 services:
   sql.data:
     image: microsoft/mssql-server-windows-developer
+    restart: on-failure
   rabbitmq:
     image: spring2/rabbitmq
+    restart: on-failure
   muncode.merp.accounting.api:
     image: muncode.merp.accounting.api
+    restart: on-failure
     build:
       context: ../output
       dockerfile: muncode.merp.accounting.api.df
@@ -15,6 +18,7 @@ services:
       - rabbitmq
   muncode.merp.sales.api:
     image: muncode.merp.sales.api
+    restart: on-failure
     build:
       context: ../output
       dockerfile: muncode.merp.sales.api.df
@@ -23,6 +27,7 @@ services:
       - rabbitmq
   muncode.merp.gateway:
     image: muncode.merp.gateway
+    restart: on-failure
     build:
       context: ../output
       dockerfile: muncode.merp.gateway.df
