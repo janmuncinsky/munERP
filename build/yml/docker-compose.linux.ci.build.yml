@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  ci-build:
+    image: microsoft/dotnet:2.1-sdk
+    volumes:
+      - ./../../.:/root
+    working_dir: /root
+    command: /bin/bash -c "chmod -x ./build/cli-linux/build-bits.sh && ./build/cli-linux/build-bits.sh"

@@ -1,0 +1,9 @@
+*.suo
+*.user
+*.StyleCop.Cache
+**/bin
+**/obj
+**/v15
+**/DesignTimeBuild
+**/logs
+**/packages

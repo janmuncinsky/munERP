@@ -1,0 +1,70 @@
+version: '3'
+
+services:
+  sql.data:
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    ports:
+      - "5433:1433"
+  rabbitmq:
+    ports:
+      - "15672:15672"
+      - "5672:5672" 
+  muncode.merp.accounting.api:
+    environment:
+      - ASPNETCORE_APPLICATIONKEY=muncode.merp.accounting.api
+      - DatabaseConfig__ConnectionString=${AccountingDatabaseConnectionString}
+      - EasyNetQConfig__ConnectionString=${RabbitMQConnectionString}
+      - EasyNetQInputConfig__Messages__0=AcceptedOrderCreated
+      - EasyNetQInputConfig__Messages__1=ItemAddedToAcceptedOrder
+      - EasyNetQInputConfig__Messages__2=ItemAddedToUnsuspendedOrder
+      - EasyNetQOutputConfig__Messages__0=AcceptedReceivableBooked
+      - EasyNetQOutputConfig__Messages__1=SuspendedReceivableBooked
+    volumes:
+      - ./../logs.:/logs
+  muncode.merp.sales.api:
+    environment:
+      - ASPNETCORE_APPLICATIONKEY=muncode.merp.sales.api
+      - DatabaseConfig__ConnectionString=${SalesDatabaseConnectionString}
+      - EasyNetQConfig__ConnectionString=${RabbitMQConnectionString}
+      - EasyNetQInputConfig__Messages__0=CreateOrder
+      - EasyNetQInputConfig__Messages__1=AddOrderItem
+      - EasyNetQInputConfig__Messages__2=AcceptedOrderCreated
+      - EasyNetQInputConfig__Messages__3=SuspendedOrderCreated
+      - EasyNetQInputConfig__Messages__4=ItemAddedToAcceptedOrder
+      - EasyNetQInputConfig__Messages__5=ItemAddedToSuspendedOrder
+      - EasyNetQInputConfig__Messages__6=ItemAddedToUnsuspendedOrder
+      - EasyNetQInputConfig__Messages__7=GetAllCustomers
+      - EasyNetQInputConfig__Messages__8=GetAllOrderReviews
+      - EasyNetQInputConfig__Messages__9=GetAllProducts
+      - EasyNetQInputConfig__Messages__10=AcceptedReceivableBooked
+      - EasyNetQInputConfig__Messages__11=SuspendedReceivableBooked
+      - EasyNetQOutputConfig__Messages__0=AcceptedOrderCreated
+      - EasyNetQOutputConfig__Messages__1=SuspendedOrderCreated
+      - EasyNetQOutputConfig__Messages__2=ItemAddedToAcceptedOrder
+      - EasyNetQOutputConfig__Messages__3=ItemAddedToSuspendedOrder
+      - EasyNetQOutputConfig__Messages__4=ItemAddedToUnsuspendedOrder
+      - EasyNetQOutputConfig__Messages__5=OrderStatusResponse
+      - InMemoryOutputConfig__Messages__0=GetCustomer
+      - InMemoryOutputConfig__Messages__1=GetProduct
+    volumes:
+      - ./../logs.:/logs
+  muncode.merp.gateway:
+    environment:
+      - ASPNETCORE_APPLICATIONKEY=muncode.merp.gateway
+      - EasyNetQConfig__ConnectionString=${RabbitMQConnectionString}
+      - AspNetCoreInputConfig__Messages__0=CreateOrder
+      - AspNetCoreInputConfig__Messages__1=AddOrderItem
+      - AspNetCoreInputConfig__Messages__2=GetAllCustomers
+      - AspNetCoreInputConfig__Messages__3=GetAllOrderReviews
+      - AspNetCoreInputConfig__Messages__4=GetAllProducts
+      - EasyNetQOutputConfig__Messages__0=CreateOrder
+      - EasyNetQOutputConfig__Messages__1=AddOrderItem
+      - EasyNetQOutputConfig__Messages__2=GetAllCustomers
+      - EasyNetQOutputConfig__Messages__3=GetAllOrderReviews
+      - EasyNetQOutputConfig__Messages__4=GetAllProducts
+    volumes:
+      - ./../logs.:/logs
+    ports:
+      - "80:80"

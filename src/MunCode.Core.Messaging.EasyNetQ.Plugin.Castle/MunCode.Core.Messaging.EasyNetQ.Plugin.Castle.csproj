@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\..\build\output\bin\MunCode.Core.Messaging.EasyNetQ.Plugin.Castle</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Castle.Windsor" Version="4.1.0" />
+    <PackageReference Include="EasyNetQ.DI.Windsor" Version="3.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MunCode.Core.EasyNetQ\MunCode.Core.EasyNetQ.csproj" />
+    <ProjectReference Include="..\MunCode.Core.Ioc.Castle\MunCode.Core.Ioc.Castle.csproj" />
+  </ItemGroup>
+
+</Project>
