@@ -20,8 +20,6 @@
 
         public void Initialize()
         {
-            // todo add retry mechanism for cases when sql container is not ready
-            Thread.Sleep(5000);
             using (this.callScopeFactory.CreateScope())
             {
                 var context = this.contextFactory.Create();
