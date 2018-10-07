@@ -1,0 +1,15 @@
+{
+  "APPLICATIONKEY": "muncode.munERP.client",
+  "HttpMessageBusConfig": {
+    "BaseUri": "http://192.168.99.100/api"
+  },
+  "HttpMessageBusOutputConfig": {
+    "Messages": [
+      "CreateOrder",
+      "AddOrderItem",
+      "GetAllCustomers",
+      "GetAllOrderReviews",
+      "GetAllProducts"
+    ]
+  }
+}

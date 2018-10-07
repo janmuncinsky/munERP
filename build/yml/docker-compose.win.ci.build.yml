@@ -6,4 +6,4 @@ services:
     volumes:
       - "..\\..\\:c:\\ProgramData"
     working_dir: "c:\\ProgramData"
-    command: dotnet publish "src\MunCode.mERP.sln" -c Debug -v normal
+    command: dotnet publish "src\MunCode.munERP.sln" -c Debug -v normal

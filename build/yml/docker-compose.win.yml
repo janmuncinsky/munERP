@@ -7,31 +7,31 @@ services:
   rabbitmq:
     image: spring2/rabbitmq
     restart: on-failure
-  muncode.merp.accounting.api:
-    image: muncode.merp.accounting.api
+  muncode.munerp.accounting.api:
+    image: muncode.munerp.accounting.api
     restart: on-failure
     build:
       context: ../output
-      dockerfile: muncode.merp.accounting.api.df
+      dockerfile: muncode.munerp.accounting.api.df
     depends_on:
       - sql.data
       - rabbitmq
-  muncode.merp.sales.api:
-    image: muncode.merp.sales.api
+  muncode.munerp.sales.api:
+    image: muncode.munerp.sales.api
     restart: on-failure
     build:
       context: ../output
-      dockerfile: muncode.merp.sales.api.df
+      dockerfile: muncode.munerp.sales.api.df
     depends_on:
       - sql.data
       - rabbitmq
-  muncode.merp.gateway:
-    image: muncode.merp.gateway
+  muncode.munerp.gateway:
+    image: muncode.munerp.gateway
     restart: on-failure
     build:
       context: ../output
-      dockerfile: muncode.merp.gateway.df
+      dockerfile: muncode.munerp.gateway.df
     depends_on:
-      - muncode.merp.sales.api
-      - muncode.merp.accounting.api
+      - muncode.munerp.sales.api
+      - muncode.munerp.accounting.api
       - rabbitmq

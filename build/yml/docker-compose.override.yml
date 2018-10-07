@@ -11,9 +11,9 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672" 
-  muncode.merp.accounting.api:
+  muncode.munerp.accounting.api:
     environment:
-      - ASPNETCORE_APPLICATIONKEY=muncode.merp.accounting.api
+      - ASPNETCORE_APPLICATIONKEY=muncode.munerp.accounting.api
       - DatabaseConfig__ConnectionString=${AccountingDatabaseConnectionString}
       - EasyNetQConfig__ConnectionString=${RabbitMQConnectionString}
       - EasyNetQInputConfig__Messages__0=AcceptedOrderCreated
@@ -23,9 +23,9 @@ services:
       - EasyNetQOutputConfig__Messages__1=SuspendedReceivableBooked
     volumes:
       - ./../logs.:/logs
-  muncode.merp.sales.api:
+  muncode.munerp.sales.api:
     environment:
-      - ASPNETCORE_APPLICATIONKEY=muncode.merp.sales.api
+      - ASPNETCORE_APPLICATIONKEY=muncode.munerp.sales.api
       - DatabaseConfig__ConnectionString=${SalesDatabaseConnectionString}
       - EasyNetQConfig__ConnectionString=${RabbitMQConnectionString}
       - EasyNetQInputConfig__Messages__0=CreateOrder
@@ -50,9 +50,9 @@ services:
       - InMemoryOutputConfig__Messages__1=GetProduct
     volumes:
       - ./../logs.:/logs
-  muncode.merp.gateway:
+  muncode.munerp.gateway:
     environment:
-      - ASPNETCORE_APPLICATIONKEY=muncode.merp.gateway
+      - ASPNETCORE_APPLICATIONKEY=muncode.munerp.gateway
       - EasyNetQConfig__ConnectionString=${RabbitMQConnectionString}
       - AspNetCoreInputConfig__Messages__0=CreateOrder
       - AspNetCoreInputConfig__Messages__1=AddOrderItem
