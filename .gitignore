@@ -7,3 +7,8 @@
 **/DesignTimeBuild
 **/logs
 **/packages
+/.dotnet
+/.local
+/.nuget
+
+
