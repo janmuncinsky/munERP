@@ -3,13 +3,10 @@ version: '3'
 services:
   sql.data:
     image: microsoft/mssql-server-linux:2017-latest
-    restart: on-failure
   rabbitmq:
     image: rabbitmq:3-management-alpine
-    restart: on-failure
   muncode.munerp.accounting.api:
     image: muncode.munerp.accounting.api
-    restart: on-failure
     build:
       context: ../output
       dockerfile: muncode.munerp.accounting.api.df
@@ -18,7 +15,6 @@ services:
       - rabbitmq
   muncode.munerp.sales.api:
     image: muncode.munerp.sales.api
-    restart: on-failure
     build:
       context: ../output
       dockerfile: muncode.munerp.sales.api.df
@@ -27,7 +23,6 @@ services:
       - rabbitmq
   muncode.munerp.gateway:
     image: muncode.munerp.gateway
-    restart: on-failure
     build:
       context: ../output
       dockerfile: muncode.munerp.gateway.df

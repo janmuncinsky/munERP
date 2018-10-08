@@ -2,16 +2,19 @@ version: '3'
 
 services:
   sql.data:
+    restart: on-failure
     environment:
       - SA_PASSWORD=Pass@word
       - ACCEPT_EULA=Y
     ports:
       - "5433:1433"
   rabbitmq:
+    restart: on-failure
     ports:
       - "15672:15672"
       - "5672:5672" 
   muncode.munerp.accounting.api:
+    restart: on-failure
     environment:
       - ASPNETCORE_APPLICATIONKEY=muncode.munerp.accounting.api
       - DatabaseConfig__ConnectionString=${AccountingDatabaseConnectionString}
@@ -24,6 +27,7 @@ services:
     volumes:
       - ./../logs.:/logs
   muncode.munerp.sales.api:
+    restart: on-failure
     environment:
       - ASPNETCORE_APPLICATIONKEY=muncode.munerp.sales.api
       - DatabaseConfig__ConnectionString=${SalesDatabaseConnectionString}
@@ -51,6 +55,7 @@ services:
     volumes:
       - ./../logs.:/logs
   muncode.munerp.gateway:
+    restart: on-failure
     environment:
       - ASPNETCORE_APPLICATIONKEY=muncode.munerp.gateway
       - EasyNetQConfig__ConnectionString=${RabbitMQConnectionString}
