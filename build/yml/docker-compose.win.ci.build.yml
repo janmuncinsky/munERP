@@ -1,9 +1,9 @@
-version: '3.4'
+version: '3'
 
 services:
   ci-build:
-    image: microsoft/dotnet:2.1-sdk
+    image: microsoft/dotnet-framework:4.7.2-sdk
     volumes:
-      - "..\\..\\:c:\\ProgramData"
-    working_dir: "c:\\ProgramData"
-    command: dotnet publish "src\MunCode.munERP.sln" -c Debug -v normal
+      - "..\\..\\:C:\\ProgramData"
+    working_dir: C:\\ProgramData
+    command: Powershell.exe -executionpolicy remotesigned -File "build\\cli-win\\built-bits.ps1"
