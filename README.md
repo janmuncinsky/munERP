@@ -4,6 +4,7 @@ munERP (muncinsky Enterprise resource planning) is an experimental project imple
 Project is composed of services each representing one Bounded context from DDD's perspective (Accounting, Sales,...) Currently there is only one client application, which is for win desktop and is developed in WPF. Another technologies will be added soon.
 
 # Concepts
+- **Plugin architecture** - Project is developed with emphasis of possibility of trying and quick replacement of various technologies (even IOC conatiner), therefore implementations are strictly separated from abstractions, and they are loaded dynamically during runtime from *.Plugin.* modules.
 
 # Getting started
 Project can be built inside of Docker container. Depending on type of your Docker host use:
@@ -15,3 +16,4 @@ Project can be built inside of Docker container. Depending on type of your Docke
  To run project inside of container use:
  - either [run.dev.docker.linux.bat](build/run.dev.docker.linux.bat)
  - or [run.dev.docker.win.bat](build/run.dev.docker.win.bat)
+ This will start services as well as dependending infrastructure like Sql server or RabbitMQ broker.
