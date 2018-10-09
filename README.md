@@ -16,4 +16,5 @@ Project can be built inside of Docker container. Depending on type of your Docke
  To run project inside of container use:
  - either [run.dev.docker.linux.bat](build/run.dev.docker.linux.bat)
  - or [run.dev.docker.win.bat](build/run.dev.docker.win.bat)
+ 
  This will start services as well as dependending infrastructure like Sql server or RabbitMQ broker.
