@@ -18,6 +18,7 @@
             modelBuilder.ApplyConfiguration(new Maps.Read.OrderItemMap());
             modelBuilder.ApplyConfiguration(new Maps.Read.CustomerMap());
             modelBuilder.ApplyConfiguration(new Maps.Read.ProductMap());
+            modelBuilder.ApplyConfiguration(new Maps.Read.OrderStatusMap());
         }
     }
 }

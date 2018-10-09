@@ -1,14 +1,12 @@
 ﻿namespace MunCode.munERP.Sales.Model.Messages.Responses
 {
-    using MunCode.munERP.Sales.Model.Read;
-
     public class OrderStatusResponse
     {
-        public OrderStatusResponse(OrderStatus orderStatus)
+        public OrderStatusResponse(string description)
         {
-            this.OrderStatus = orderStatus;
+            this.Description = description;
         }
 
-        public OrderStatus OrderStatus { get; }
+        public string Description { get; }
     }
 }

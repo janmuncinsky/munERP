@@ -16,12 +16,14 @@
         {
         }
 
-        public override OrderStatus OrderStatus => OrderStatus.OrderSuspended;
+        public override OrderStatusEnum OrderStatus => OrderStatusEnum.OrderSuspended;
 
         public override async Task Consume(ReceiveContext<SuspendedOrderCreated> messageContext)
         {
             await base.Consume(messageContext);
-            await messageContext.Respond(new OrderStatusResponse(this.OrderStatus));
+            var orderStatus = await this.GetOrderStatus();
+            var response = new OrderStatusResponse(orderStatus.LongDescription);
+            await messageContext.Respond(response);
         }
     }
 }

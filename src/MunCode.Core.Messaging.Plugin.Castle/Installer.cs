@@ -39,7 +39,7 @@
                 Component.For<IMessageContextFactory>().AsFactory().LifestyleSingleton(),
                 Component.For<IInputMessageChannel>().ImplementedBy<InputMessageChannel>().LifestyleSingleton(),
                 Component.For<IMessageHandlerFactory>().AsFactory().LifestyleSingleton(),
-                Component.For<IMessageBus>().ImplementedBy<MediatorBus>().LifestyleSingleton(),
+                Component.For<IMessageBus, IRequestBus, ICommandBus, IEventBus>().ImplementedBy<MediatorBus>().LifestyleSingleton(),
                 Component.For<IOutputMessageChannel>().ImplementedBy<MessageRouter>().LifestyleSingleton(),
                 Component.For(typeof(MessageChannelConfigurator<>)).LifestyleSingleton());
             container.RegisterOutputMessageChannel<InMemoryOutputMessageChannel, InMemoryOutputConfig>();

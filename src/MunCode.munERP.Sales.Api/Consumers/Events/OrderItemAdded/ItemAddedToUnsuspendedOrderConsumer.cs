@@ -12,6 +12,6 @@
         {
         }
 
-        public override OrderStatus OrderStatus => OrderStatus.OrderAccepted;
+        public override OrderStatusEnum OrderStatus => OrderStatusEnum.OrderAccepted;
     }
 }

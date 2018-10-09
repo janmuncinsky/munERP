@@ -61,7 +61,7 @@ namespace MunCode.munERP.Client.Win.Sales.UI.OrderReview
                 var item = new OrderItem(0, product.Id, 1);
                 var request = new AddOrderItem(this.SelectedOrder.Id, item);
                 var result = await this.bus.Request<AddOrderItem, OrderStatusResponse>(request);
-                this.windowService.ShowMessageBox(string.Format(Translation.msgOrderStatus, result.OrderStatus));
+                this.windowService.ShowMessageBox(result.Description);
             }
         }
     }
