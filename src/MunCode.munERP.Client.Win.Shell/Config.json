@@ -1,7 +1,7 @@
 {
   "APPLICATIONKEY": "muncode.munERP.client",
   "HttpMessageBusConfig": {
-    "BaseUri": "http://192.168.99.100/api"
+    "BaseUri": "http://192.168.99.100:1234/api"
   },
   "HttpMessageBusOutputConfig": {
     "Messages": [
