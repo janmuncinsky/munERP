@@ -1,5 +1,5 @@
 # Summary
-munERP (muncinsky Enterprise resource planning) is an experimental project implementing basic ERP system based on microservice architecture. Purpose is to show common concepts to other developers or colegues, but core of the project is mature enough to be used even in the production.
+munERP (muncinsky Enterprise resource planning) is an experimental project implementing basic ERP system based on microservice architecture using design like DDD and CQRS. Purpose is to show common concepts to other developers or colegues, but core of the project is mature enough to be used even in the production.
 
 Project is composed of services each representing one Bounded context from DDD's perspective (Accounting, Sales,...) Currently there is only one client application, which is for win desktop and is developed in WPF. Another technologies will be added soon.
 
