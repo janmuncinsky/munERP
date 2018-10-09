@@ -7,6 +7,8 @@ services:
     image: rabbitmq:3-management-alpine
   muncode.munerp.accounting.api:
     image: muncode.munerp.accounting.api
+    volumes:
+      - ./../logs.:/logs
     build:
       context: ../output
       dockerfile: muncode.munerp.accounting.api.df
@@ -15,6 +17,8 @@ services:
       - rabbitmq
   muncode.munerp.sales.api:
     image: muncode.munerp.sales.api
+    volumes:
+      - ./../logs.:/logs
     build:
       context: ../output
       dockerfile: muncode.munerp.sales.api.df
@@ -23,6 +27,8 @@ services:
       - rabbitmq
   muncode.munerp.gateway:
     image: muncode.munerp.gateway
+    volumes:
+      - ./../logs.:/logs
     build:
       context: ../output
       dockerfile: muncode.munerp.gateway.df

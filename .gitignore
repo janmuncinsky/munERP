@@ -5,11 +5,11 @@
 **/obj
 **/v15
 **/DesignTimeBuild
-**/logs
 **/packages
 /.dotnet
 /.local
 /.nuget
 /Microsoft
 /USOPrivate
+/USOShared
 

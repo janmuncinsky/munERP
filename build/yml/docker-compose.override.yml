@@ -24,8 +24,6 @@ services:
       - EasyNetQInputConfig__Messages__2=ItemAddedToUnsuspendedOrder
       - EasyNetQOutputConfig__Messages__0=AcceptedReceivableBooked
       - EasyNetQOutputConfig__Messages__1=SuspendedReceivableBooked
-    volumes:
-      - ./../logs.:/logs
   muncode.munerp.sales.api:
     restart: on-failure
     environment:
@@ -52,8 +50,6 @@ services:
       - EasyNetQOutputConfig__Messages__5=OrderStatusResponse
       - InMemoryOutputConfig__Messages__0=GetCustomer
       - InMemoryOutputConfig__Messages__1=GetProduct
-    volumes:
-      - ./../logs.:/logs
   muncode.munerp.gateway:
     restart: on-failure
     environment:
@@ -69,7 +65,5 @@ services:
       - EasyNetQOutputConfig__Messages__2=GetAllCustomers
       - EasyNetQOutputConfig__Messages__3=GetAllOrderReviews
       - EasyNetQOutputConfig__Messages__4=GetAllProducts
-    volumes:
-      - ./../logs.:/logs
     ports:
       - "80:80"
