@@ -27,19 +27,20 @@
             this.requestBus = requestBus;
         }
 
-        public abstract OrderStatus OrderStatus { get; }
+        public abstract OrderStatusEnum OrderStatus { get; }
 
         public virtual async Task Consume(ReceiveContext<TOrderCreated> messageContext)
         {
             var messageData = messageContext.Message.Data;
             var customerRequest = new GetCustomer(messageData.CustomerId);
             var customer = await this.requestBus.Request<GetCustomer, Customer>(customerRequest);
+            var orderStatus = await this.GetOrderStatus();
 
             var orderReview = new OrderReview(
                 messageData.OrderId,
                 customer.Name,
                 messageData.OrderTotal,
-                this.OrderStatus);
+                orderStatus.Description);
             this.uow.Add(orderReview);
 
             foreach (var eventItem in messageData.Items)
@@ -57,6 +58,12 @@
             }
 
             await this.uow.Save();
+        }
+
+        protected Task<OrderStatus> GetOrderStatus()
+        {
+            var orderStatusRequest = new GetOrderStatus(this.OrderStatus);
+            return this.requestBus.Request<GetOrderStatus, OrderStatus>(orderStatusRequest);
         }
     }
 }

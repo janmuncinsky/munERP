@@ -25,7 +25,7 @@
                 <DataGridTextColumn Header="{x:Static resources:Translation.Customer}" Binding="{Binding CustomerName}"/>
                 <DataGridTextColumn Header="{x:Static resources:Translation.OrderTotal}" Binding="{Binding OrderTotal.Amount}"/>
                 <DataGridTextColumn Header="{x:Static resources:Translation.Currency}" Binding="{Binding OrderTotal.Currency}"/>
-                <DataGridTextColumn Header="{x:Static resources:Translation.OrderStatus}" Binding="{Binding OrderStatus}"/>
+                <DataGridTextColumn Header="{x:Static resources:Translation.OrderStatus}" Binding="{Binding OrderStatusDescription}"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

@@ -52,6 +52,7 @@ services:
       - EasyNetQOutputConfig__Messages__5=OrderStatusResponse
       - InMemoryOutputConfig__Messages__0=GetCustomer
       - InMemoryOutputConfig__Messages__1=GetProduct
+      - InMemoryOutputConfig__Messages__2=GetOrderStatus
     volumes:
       - ./../logs.:/logs
   muncode.munerp.gateway:

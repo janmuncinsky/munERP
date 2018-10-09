@@ -6,12 +6,12 @@
 
     public class OrderReview
     {
-        public OrderReview(Guid id, string customerName, Money orderTotal, OrderStatus orderStatus)
+        public OrderReview(Guid id, string customerName, Money orderTotal, string orderStatusDescription)
         {
             this.Id = id;
             this.CustomerName = customerName;
             this.OrderTotal = orderTotal;
-            this.OrderStatus = orderStatus;
+            this.OrderStatusDescription = orderStatusDescription;
         }
 
         protected OrderReview()
@@ -24,6 +24,6 @@
 
         public Money OrderTotal { get; protected set; }
 
-        public OrderStatus OrderStatus { get; protected set; }
+        public string OrderStatusDescription { get; protected set; }
     }
 }

@@ -27,14 +27,15 @@
             this.requestBus = requestBus;
         }
 
-        public abstract OrderStatus OrderStatus { get; }
+        public abstract OrderStatusEnum OrderStatus { get; }
 
         public virtual async Task Consume(ReceiveContext<TOrderItemAdded> messageContext)
         {
             var messageData = messageContext.Message.Data;
+            var orderStatus = await this.GetOrderStatus();
             this.uow.Update<OrderReview>()
                 .SetReference(o => o.OrderTotal, messageData.OrderTotal)
-                .SetValue(o => o.OrderStatus, this.OrderStatus)
+                .SetValue(o => o.OrderStatusDescription, orderStatus.Description)
                 .Where(o => o.Id, messageData.OrderId);
 
             var request = new GetProduct(messageData.OrderItem.ProductId);
@@ -50,6 +51,12 @@
             this.uow.Add(item);
 
             await this.uow.Save();
+        }
+
+        protected Task<OrderStatus> GetOrderStatus()
+        {
+            var orderStatusRequest = new GetOrderStatus(this.OrderStatus);
+            return this.requestBus.Request<GetOrderStatus, OrderStatus>(orderStatusRequest);
         }
     }
 }

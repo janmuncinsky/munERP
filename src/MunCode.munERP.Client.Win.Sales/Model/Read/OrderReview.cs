@@ -2,16 +2,14 @@
 {
     using System;
 
-    using MunCode.munERP.Client.Win.Sales.Model.Messages.Transactions;
-
     public class OrderReview
     {
-        public OrderReview(Guid id, string customerName, Money orderTotal, OrderStatus orderStatus)
+        public OrderReview(Guid id, string customerName, Money orderTotal, string orderStatusDescription)
         {
             this.Id = id;
             this.CustomerName = customerName;
             this.OrderTotal = orderTotal;
-            this.OrderStatus = orderStatus;
+            this.OrderStatusDescription = orderStatusDescription;
         }
 
         public Guid Id { get; }
@@ -20,6 +18,6 @@
 
         public Money OrderTotal { get; }
 
-        public OrderStatus OrderStatus { get; }
+        public string OrderStatusDescription { get; }
     }
 }

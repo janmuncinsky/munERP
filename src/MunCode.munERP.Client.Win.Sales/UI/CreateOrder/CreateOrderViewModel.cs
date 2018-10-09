@@ -70,7 +70,7 @@ namespace MunCode.munERP.Client.Win.Sales.UI.CreateOrder
             var items = this.orderItems.Select(i => new OrderItem(i.LineNumber, i.Product.Id, i.Quantity));
             var command = new CreateOrder(this.SelectedCustomer.Id, items);
             var result = await this.bus.Request<CreateOrder, OrderStatusResponse>(command);
-            this.windowService.ShowMessageBox(string.Format(Translation.msgOrderStatus, result.OrderStatus));
+            this.windowService.ShowMessageBox(result.Description);
         }
 
         public async Task Initialize()
