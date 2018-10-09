@@ -67,4 +67,4 @@ services:
       - EasyNetQOutputConfig__Messages__3=GetAllOrderReviews
       - EasyNetQOutputConfig__Messages__4=GetAllProducts
     ports:
-      - "80:80"
+      - "1234:80"
