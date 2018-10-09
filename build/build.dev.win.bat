@@ -1,2 +1,3 @@
-Powershell.exe -executionpolicy remotesigned -File cli-win\built-bits.ps1
+cd ..\
+Powershell.exe -executionpolicy remotesigned -File build\cli-win\built-bits.ps1
 pause
