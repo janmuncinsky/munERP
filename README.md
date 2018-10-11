@@ -3,8 +3,9 @@ munERP (muncinsky Enterprise resource planning) is an experimental project imple
 
 Project is composed of services each representing one Bounded context from DDD's perspective (Accounting, Sales,...) and client applications. Currently there is only one client application, which is for win desktop and is developed in WPF. Another technologies will be added soon.
 
-# Concepts
+# Main concepts
 - **Plugin architecture** - Project is developed with emphasis of possibility of trying and quick replacement of various technologies (even IOC container), therefore implementations are strictly separated from abstractions, and they are loaded dynamically during runtime from *.Plugin.* modules.
+- **Common messaging interface** - Introduced common message bus interface that can be implemented by various message channels (currently EasyNetQ/RabbitMQ, ASP Web.API, in process channel). Benefit is that we can quickly map any message to a particular channel that we need and preserve the same cross-cutting concerns (logging, caching,...) handled by message filters.
 
 # Getting started
 Project can be built inside of Docker container. Depending on type of your Docker host use:
