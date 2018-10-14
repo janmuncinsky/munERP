@@ -173,14 +173,14 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)..\..\build\output\bin\MunCode.Core.Ioc.Castle\netstandard2.0\publish" "$(TargetDir)"  /y
-xcopy "$(ProjectDir)..\..\build\output\bin\MunCode.Core.AppHosting.Plugin.Castle\netstandard2.0\publish" "$(TargetDir)"  /y
-xcopy "$(ProjectDir)..\..\build\output\bin\MunCode.Core.Log4net.Plugin.Castle\netstandard2.0\publish" "$(TargetDir)"  /y
-xcopy "$(ProjectDir)..\..\build\output\bin\MunCode.Core.Messaging.Plugin.Castle\netstandard2.0\publish" "$(TargetDir)"  /y
-xcopy "$(ProjectDir)..\..\build\output\bin\MunCode.Core.Messaging.Http.Plugin.Castle\netstandard2.0\publish" "$(TargetDir)"  /y
-xcopy "$(ProjectDir)..\..\build\output\bin\MunCode.Core.Caching.Memory.Plugin.Castle\netstandard2.0\publish" "$(TargetDir)"  /y
-xcopy "$(ProjectDir)..\..\build\output\bin\MunCode.Core.Caliburn.Plugin.Castle" "$(TargetDir)"  /y
-xcopy "$(ProjectDir)..\..\build\output\bin\MunCode.munERP.Client.Win.Sales" "$(TargetDir)"  /y</PostBuildEvent>
+    <PostBuildEvent>copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Ioc.Castle\netstandard2.0\publish $(TargetDir) /y
+copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.AppHosting.Plugin.Castle\netstandard2.0\publish $(TargetDir) /y
+copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Log4net.Plugin.Castle\netstandard2.0\publish $(TargetDir) /y
+copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Messaging.Plugin.Castle\netstandard2.0\publish $(TargetDir) /y
+copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Messaging.Http.Plugin.Castle\netstandard2.0\publish $(TargetDir) /y
+copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Caching.Memory.Plugin.Castle\netstandard2.0\publish $(TargetDir) /y
+copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Caliburn.Plugin.Castle $(TargetDir) /y
+copy $(ProjectDir)..\..\build\output\bin\MunCode.munERP.Client.Win.Sales $(TargetDir) /y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

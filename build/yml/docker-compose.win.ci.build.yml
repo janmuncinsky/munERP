@@ -4,6 +4,6 @@ services:
   ci-build:
     image: microsoft/dotnet-framework:4.7.2-sdk
     volumes:
-      - "..\\..\\:C:\\ProgramData"
-    working_dir: C:\\ProgramData
+      - "..\\..\\:C:\\ProgramData\\root"
+    working_dir: C:\\ProgramData\\root
     command: Powershell.exe -executionpolicy remotesigned -File "build\\cli-win\\built-bits.ps1"
