@@ -5,6 +5,9 @@ services:
     image: microsoft/mssql-server-linux:2017-latest
   rabbitmq:
     image: rabbitmq:3-management-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=password
   muncode.munerp.accounting.api:
     volumes:
       - ./../logs.:/logs
