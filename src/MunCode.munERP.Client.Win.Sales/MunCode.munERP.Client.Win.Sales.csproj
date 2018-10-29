@@ -91,7 +91,6 @@
     <Compile Include="Model\Messages\Transactions\OrderItem.cs" />
     <Compile Include="Model\Messages\Transactions\OrderStatus.cs" />
     <Compile Include="Model\Read\Customer.cs" />
-    <Compile Include="Model\Money.cs" />
     <Compile Include="Model\Read\OrderReview.cs" />
     <Compile Include="Model\Read\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

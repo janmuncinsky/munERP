@@ -5,13 +5,13 @@
     using MunCode.munERP.Sales.Model.Messages.Events.ReceivableBooked;
     using MunCode.munERP.Sales.Model.Read;
 
-    public class SuspendedReceivableBookedConsumer : ReceivableBookedConsumer<SuspendedReceivableBooked>
+    public class ReceivableAcceptedConsumer : ReceivableBookedConsumer<ReceivableAccepted>
     {
-        public SuspendedReceivableBookedConsumer(IUnitOfWork uow, IRequestBus requestBus)
+        public ReceivableAcceptedConsumer(IUnitOfWork uow, IRequestBus requestBus)
             : base(uow, requestBus)
         {
         }
 
-        public override OrderStatusEnum OrderStatus => OrderStatusEnum.ReceivableSuspended;
+        public override OrderStatusEnum OrderStatus => OrderStatusEnum.ReceivableAccepted;
     }
 }

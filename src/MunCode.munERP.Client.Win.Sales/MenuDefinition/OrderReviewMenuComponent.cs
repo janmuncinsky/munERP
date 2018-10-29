@@ -9,7 +9,7 @@
     using MunCode.munERP.Client.Win.Sales.Resources;
     using MunCode.munERP.Client.Win.Sales.UI.OrderReview;
 
-    [Parent(typeof(SalesMenuComposite))]
+    [Component(typeof(SalesMenuComposite))]
     public class OrderReviewMenuComponent : MenuComponent<OrderReviewViewModel>
     {
         public OrderReviewMenuComponent(

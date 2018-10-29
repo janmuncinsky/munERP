@@ -4,7 +4,8 @@
     using Microsoft.Extensions.Options;
 
     using MunCode.Core.Data;
-    using MunCode.munERP.Accounting.Domain.Maps;
+    using MunCode.munERP.Accounting.Domain.Maps.Domain;
+    using MunCode.munERP.Accounting.Domain.Maps.Read;
 
     public class AccountingContext : BaseDbContext
     {
@@ -17,6 +18,7 @@
             modelBuilder.ApplyConfiguration(new AuditTrailMap());
             modelBuilder.ApplyConfiguration(new CustomerBalanceMap());
             modelBuilder.ApplyConfiguration(new ReceivableMap());
+            modelBuilder.ApplyConfiguration(new CustomerBalanceReviewMap());
         }
     }
 }

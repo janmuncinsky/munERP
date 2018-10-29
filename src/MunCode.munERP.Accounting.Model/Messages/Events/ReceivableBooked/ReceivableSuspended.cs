@@ -2,9 +2,9 @@
 {
     using System;
 
-    public class SuspendedReceivableBooked : ReceivableBooked
+    public class ReceivableSuspended : ReceivableBooked
     {
-        public SuspendedReceivableBooked(Guid orderId)
+        public ReceivableSuspended(Guid orderId)
             : base(orderId)
         {
         }

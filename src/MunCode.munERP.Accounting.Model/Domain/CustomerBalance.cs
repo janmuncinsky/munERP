@@ -36,7 +36,7 @@
         public void BookReceivable(Receivable receivable)
         {
             Guard.NotNull(receivable, nameof(receivable));
-            this.receivableTotal += receivable.GetCreditCoverage(this.RemainingCredit);
+            this.receivableTotal += receivable.TryGetCreditCoverage(this.RemainingCredit, this.Id);
             this.receivables.Add(receivable);
         }
 
@@ -44,7 +44,7 @@
         {
             var receivable = this.receivables.Single(r => r.Id == orderId);
             this.receivableTotal -= receivable.IncreaseAmount(newAmount);
-            this.receivableTotal += receivable.GetCreditCoverage(this.RemainingCredit);
+            this.receivableTotal += receivable.TryGetCreditCoverage(this.RemainingCredit, this.Id);
         }
 
         public void BookPayment(Guid orderId, Money paidAmount)
@@ -55,7 +55,7 @@
             foreach (var receivable in this.receivables.OrderBy(o => o, comparer))
             {
                 paidReceivable = receivable.TryBookPayment(orderId, paidAmount) ? receivable : paidReceivable;
-                this.receivableTotal += receivable.GetCreditCoverageWhenSuspended(this.RemainingCredit);
+                this.receivableTotal += receivable.GetCreditCoverageWhenSuspended(this.RemainingCredit, this.Id);
             }
 
             Guard.NotNull(paidReceivable, new InvalidOperationException("Cannot find requested receivable."));
@@ -70,7 +70,7 @@
 
             foreach (var receivable in this.receivables.OrderBy(o => o, comparer))
             {
-                this.receivableTotal += receivable.GetCreditCoverageWhenSuspended(this.RemainingCredit);
+                this.receivableTotal += receivable.GetCreditCoverageWhenSuspended(this.RemainingCredit, this.Id);
             }
         }
     }

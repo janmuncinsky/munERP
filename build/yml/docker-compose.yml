@@ -25,8 +25,11 @@ services:
       - EasyNetQInputConfig__Messages__0=AcceptedOrderCreated
       - EasyNetQInputConfig__Messages__1=ItemAddedToAcceptedOrder
       - EasyNetQInputConfig__Messages__2=ItemAddedToUnsuspendedOrder
-      - EasyNetQOutputConfig__Messages__0=AcceptedReceivableBooked
-      - EasyNetQOutputConfig__Messages__1=SuspendedReceivableBooked
+      - EasyNetQInputConfig__Messages__3=ReceivableAccepted
+      - EasyNetQInputConfig__Messages__4=ReceivableSuspended
+      - EasyNetQInputConfig__Messages__5=GetAllCustomerBalanceReviews
+      - EasyNetQOutputConfig__Messages__0=ReceivableAccepted
+      - EasyNetQOutputConfig__Messages__1=ReceivableSuspended
     build:
       context: ../output
       dockerfile: muncode.munerp.accounting.api.df
@@ -50,8 +53,8 @@ services:
       - EasyNetQInputConfig__Messages__7=GetAllCustomers
       - EasyNetQInputConfig__Messages__8=GetAllOrderReviews
       - EasyNetQInputConfig__Messages__9=GetAllProducts
-      - EasyNetQInputConfig__Messages__10=AcceptedReceivableBooked
-      - EasyNetQInputConfig__Messages__11=SuspendedReceivableBooked
+      - EasyNetQInputConfig__Messages__10=ReceivableAccepted
+      - EasyNetQInputConfig__Messages__11=ReceivableSuspended
       - EasyNetQOutputConfig__Messages__0=AcceptedOrderCreated
       - EasyNetQOutputConfig__Messages__1=SuspendedOrderCreated
       - EasyNetQOutputConfig__Messages__2=ItemAddedToAcceptedOrder
@@ -78,11 +81,13 @@ services:
       - AspNetCoreInputConfig__Messages__2=GetAllCustomers
       - AspNetCoreInputConfig__Messages__3=GetAllOrderReviews
       - AspNetCoreInputConfig__Messages__4=GetAllProducts
+      - AspNetCoreInputConfig__Messages__5=GetAllCustomerBalanceReviews
       - EasyNetQOutputConfig__Messages__0=CreateOrder
       - EasyNetQOutputConfig__Messages__1=AddOrderItem
       - EasyNetQOutputConfig__Messages__2=GetAllCustomers
       - EasyNetQOutputConfig__Messages__3=GetAllOrderReviews
       - EasyNetQOutputConfig__Messages__4=GetAllProducts
+      - EasyNetQOutputConfig__Messages__5=GetAllCustomerBalanceReviews
     ports:
       - "1234:80"
     build:

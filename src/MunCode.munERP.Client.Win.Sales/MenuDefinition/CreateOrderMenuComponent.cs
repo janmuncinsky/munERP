@@ -9,7 +9,7 @@
     using MunCode.munERP.Client.Win.Sales.Resources;
     using MunCode.munERP.Client.Win.Sales.UI.CreateOrder;
 
-    [Parent(typeof(SalesMenuComposite))]
+    [Component(typeof(SalesMenuComposite))]
     public class CreateOrderMenuComponent : MenuComponent<CreateOrderViewModel>
     {
         public CreateOrderMenuComponent(

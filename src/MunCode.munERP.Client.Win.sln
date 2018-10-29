@@ -12,6 +12,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MunCode.munERP.Client.Win.Shell", "MunCode.munERP.Client.Win.Shell\MunCode.munERP.Client.Win.Shell.csproj", "{4D4C6B1E-8A1E-4902-A310-A00816DBD359}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F4275E3C-8414-4471-9AA8-1315BF3DAF29} = {F4275E3C-8414-4471-9AA8-1315BF3DAF29}
+		{072D295E-47B5-4E07-BDE2-CA685BC7538C} = {072D295E-47B5-4E07-BDE2-CA685BC7538C}
 		{4420B0F5-78ED-4B85-923A-FE4E261514EB} = {4420B0F5-78ED-4B85-923A-FE4E261514EB}
 	EndProjectSection
 EndProject
@@ -20,6 +21,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MunCode.Core.Caliburn", "MunCode.Core.Caliburn\MunCode.Core.Caliburn.csproj", "{1134A6F2-8AD4-4F9E-BA7A-2CD850A8AE70}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MunCode.munERP.Client.Win.Sales", "MunCode.munERP.Client.Win.Sales\MunCode.munERP.Client.Win.Sales.csproj", "{F4275E3C-8414-4471-9AA8-1315BF3DAF29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MunCode.munERP.Client.Win.Accounting", "MunCode.munERP.Client.Win.Accounting\MunCode.munERP.Client.Win.Accounting.csproj", "{072D295E-47B5-4E07-BDE2-CA685BC7538C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +46,10 @@ Global
 		{F4275E3C-8414-4471-9AA8-1315BF3DAF29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4275E3C-8414-4471-9AA8-1315BF3DAF29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4275E3C-8414-4471-9AA8-1315BF3DAF29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{072D295E-47B5-4E07-BDE2-CA685BC7538C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{072D295E-47B5-4E07-BDE2-CA685BC7538C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{072D295E-47B5-4E07-BDE2-CA685BC7538C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{072D295E-47B5-4E07-BDE2-CA685BC7538C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +60,7 @@ Global
 		{4420B0F5-78ED-4B85-923A-FE4E261514EB} = {E7D54F0D-AF17-4985-8CE7-5CBD87C2BBD7}
 		{1134A6F2-8AD4-4F9E-BA7A-2CD850A8AE70} = {1D50E438-BDB8-4994-982C-DCD2D74DDE3F}
 		{F4275E3C-8414-4471-9AA8-1315BF3DAF29} = {06BB4D40-482A-43E0-9815-DAC13F4D6503}
+		{072D295E-47B5-4E07-BDE2-CA685BC7538C} = {06BB4D40-482A-43E0-9815-DAC13F4D6503}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F133B5F-9847-4630-A845-8046033BD3C2}

@@ -4,6 +4,7 @@
 
     using Microsoft.EntityFrameworkCore;
 
+    using MunCode.Core.Guards;
     using MunCode.Core.Messaging.Endpoints.Input.Consuming.Requests;
     using MunCode.Core.Messaging.Messages;
     using MunCode.munERP.Sales.Model.Messages.Requests;
@@ -15,12 +16,13 @@
 
         public GetAllOrderReviewsConsumer(DbContext context)
         {
+            Guard.NotNull(context, nameof(context));
             this.context = context;
         }
 
-        public async Task<OrderReview[]> Consume(ReceiveContext<GetAllOrderReviews> messageContext)
+        public Task<OrderReview[]> Consume(ReceiveContext<GetAllOrderReviews> messageContext)
         {
-            return await this.context.Set<OrderReview>().ToArrayAsync();
+            return this.context.Set<OrderReview>().ToArrayAsync();
         }
     }
 }

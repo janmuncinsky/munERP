@@ -29,11 +29,13 @@
             var collection = (Array)base.Resolve(context, contextHandlerResolver, model, dependency);
 
             var children = new List<object>();
+            var isComponent = Attribute.GetCustomAttribute(model.Implementation, typeof(ComponentAttribute)) is ComponentAttribute;
 
             foreach (var o in collection)
             {
-                var attribute = (ParentAttribute)Attribute.GetCustomAttribute(o.GetType(), typeof(ParentAttribute));
-                if (attribute == null || attribute.ParentType == model.Implementation)
+                var component = (ComponentAttribute)Attribute.GetCustomAttribute(o.GetType(), typeof(ComponentAttribute));
+                if ((!isComponent && (component == null || component.IsRoot)) ||
+                    (component != null && component.IsChildOf(model.Implementation)))
                 {
                     children.Add(o);
                 }

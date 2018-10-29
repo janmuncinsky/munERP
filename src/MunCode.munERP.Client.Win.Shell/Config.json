@@ -9,7 +9,8 @@
       "AddOrderItem",
       "GetAllCustomers",
       "GetAllOrderReviews",
-      "GetAllProducts"
+      "GetAllProducts",
+      "GetAllCustomerBalanceReviews"
     ]
   }
 }

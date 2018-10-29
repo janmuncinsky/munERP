@@ -1,4 +1,4 @@
-﻿namespace MunCode.munERP.Accounting.Domain.Maps
+﻿namespace MunCode.munERP.Accounting.Domain.Maps.Domain
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;

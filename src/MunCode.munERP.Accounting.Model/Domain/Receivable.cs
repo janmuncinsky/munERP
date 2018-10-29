@@ -59,28 +59,28 @@
             return oldAmount;
         }
 
-        public Money GetCreditCoverage(Money remainingCredit)
+        public Money TryGetCreditCoverage(Money remainingCredit, int customerBalanceId)
         {
-            var coverage = this.GetCreditCoverageInternal(remainingCredit, () => new AcceptedReceivableBooked(this.Id));
+            var coverage = this.TryGetCreditCoverageInternal(remainingCredit, () => new ReceivableAccepted(this.Id, this.amount, customerBalanceId));
             if (coverage == Money.Default)
             {
-                this.RaiseEvent(new SuspendedReceivableBooked(this.Id));
+                this.RaiseEvent(new ReceivableSuspended(this.Id));
             }
 
             return coverage;
         }
 
-        public Money GetCreditCoverageWhenSuspended(Money remainingCredit)
+        public Money GetCreditCoverageWhenSuspended(Money remainingCredit, int customerBalanceId)
         {
             if (this.isSuspended)
             {
-                return this.GetCreditCoverageInternal(remainingCredit, () => new UnsuspendedReceivableBooked(this.Id));
+                return this.TryGetCreditCoverageInternal(remainingCredit, () => new ReceivableUnsuspended(this.Id, this.amount, customerBalanceId));
             }
 
             return Money.Default;
         }
 
-        protected virtual Money GetCreditCoverageInternal<TValidEvent>(Money remainingCredit, Func<TValidEvent> validEventFactory)
+        protected virtual Money TryGetCreditCoverageInternal<TValidEvent>(Money remainingCredit, Func<TValidEvent> validEventFactory)
             where TValidEvent : IEvent
         {
             if (this.amount <= remainingCredit)

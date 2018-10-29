@@ -4,6 +4,7 @@
 **/bin
 **/obj
 **/v15
+**/.vs
 **/DesignTimeBuild
 **/packages
 /.dotnet

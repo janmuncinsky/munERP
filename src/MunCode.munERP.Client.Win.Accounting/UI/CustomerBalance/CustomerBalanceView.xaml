@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="MunCode.munERP.Client.Win.Accounting.UI.CustomerBalance.CustomerBalanceReviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:resources="clr-namespace:MunCode.munERP.Client.Win.Accounting.Resources"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:customerBalance="clr-namespace:MunCode.munERP.Client.Win.Accounting.UI.CustomerBalance"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=customerBalance:CustomerBalanceReviewViewModel}">
+    <DataGrid DockPanel.Dock="Bottom" ItemsSource="{Binding CustomerBalanceReviews}"  AutoGenerateColumns="False">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="{x:Static resources:Translation.CustomerName}" Binding="{Binding CustomerName}"/>
+            <DataGridTextColumn Header="{x:Static resources:Translation.CreditTotal}" Binding="{Binding CreditTotal.Amount}"/>
+            <DataGridTextColumn Header="{x:Static resources:Translation.Currency}" Binding="{Binding CreditTotal.Currency}"/>
+            <DataGridTextColumn Header="{x:Static resources:Translation.ReceivableTotal}" Binding="{Binding ReceivableTotal.Amount}"/>
+            <DataGridTextColumn Header="{x:Static resources:Translation.Currency}" Binding="{Binding ReceivableTotal.Currency}"/>
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

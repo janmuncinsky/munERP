@@ -1,4 +1,4 @@
-﻿namespace MunCode.munERP.Client.Win.Sales.Model
+﻿namespace MunCode.Core.Design.Read
 {
     public class Money
     {

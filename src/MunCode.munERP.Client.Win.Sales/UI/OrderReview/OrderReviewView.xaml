@@ -14,7 +14,7 @@
                 <Button Content="{x:Static resources:Translation.AddItem}" cal:Message.Attach="[Event Click] = [Action AddItem]"/>
             </ToolBar>
         </ToolBarTray>
-        <DataGrid DockPanel.Dock="Bottom" ItemsSource="{Binding OrderReviews}" SelectedItem="{Binding SelectedOrder}">
+        <DataGrid DockPanel.Dock="Bottom" ItemsSource="{Binding OrderReviews}" SelectedItem="{Binding SelectedOrder}" AutoGenerateColumns="False">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridRow}">
                     <Setter Property="cal:Message.Attach" Value="[Event MouseDoubleClick] = [Action AddItem]"/>

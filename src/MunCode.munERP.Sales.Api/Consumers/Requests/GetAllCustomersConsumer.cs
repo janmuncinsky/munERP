@@ -22,7 +22,6 @@
 
         public Task<Customer[]> Consume(ReceiveContext<GetAllCustomers> messageContext)
         {
-            Guard.NotNull(messageContext, nameof(messageContext));
             return this.context.Set<Customer>().ToArrayAsync();
         }
     }
