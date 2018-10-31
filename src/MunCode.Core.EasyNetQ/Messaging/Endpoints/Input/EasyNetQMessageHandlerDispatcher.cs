@@ -20,12 +20,12 @@ namespace MunCode.Core.Messaging.Endpoints.Input
             this.factory = factory;
         }
 
-        public Task Dispatch<TMessage>(IMessage<TMessage> message)
+        public Task Dispatch<TMessage>(IMessage<TMessage> message, string topic)
         {
             Guard.NotNull(message, nameof(message));
             var metaData = new MessageMetadata(message.Properties.ReplyTo, message.Properties.CorrelationId);
             var context = this.factory.Create<ReceiveContext<TMessage>, TMessage>(message.Body, metaData);
-            return this.dispatcher.Dispatch<TMessage, EmptyResponse>(context);
+            return this.dispatcher.Dispatch<TMessage, EmptyResponse>(context, topic);
         }
     }
 }

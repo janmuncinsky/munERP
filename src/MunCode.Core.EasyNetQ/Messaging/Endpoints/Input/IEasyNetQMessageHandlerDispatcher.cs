@@ -6,6 +6,6 @@ namespace MunCode.Core.Messaging.Endpoints.Input
 
     public interface IEasyNetQMessageHandlerDispatcher
     {
-        Task Dispatch<TMessage>(IMessage<TMessage> message);
+        Task Dispatch<TMessage>(IMessage<TMessage> message, string topic);
     }
 }

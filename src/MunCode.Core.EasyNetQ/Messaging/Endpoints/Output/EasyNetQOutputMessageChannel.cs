@@ -6,6 +6,7 @@
     using global::EasyNetQ.Producer;
     using global::EasyNetQ.Topology;
 
+    using MunCode.Core.Design.Domain;
     using MunCode.Core.Guards;
     using MunCode.Core.Messaging.Messages;
 
@@ -64,6 +65,11 @@
             where TEvent : class, IEvent
         {
             var topic = this.bus.Advanced.Conventions.TopicNamingConvention(typeof(TEvent));
+            if (context.Message is IHaveTopic message)
+            {
+                topic = message.Topic;
+            }
+
             var messageType = typeof(TEvent);
 
             var easyNetQMessage = this.CreateEasyNetQMessage(context);

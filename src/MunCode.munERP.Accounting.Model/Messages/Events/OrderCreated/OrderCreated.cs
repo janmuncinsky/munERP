@@ -1,14 +1,16 @@
-﻿namespace MunCode.munERP.Sales.Model.Messages.Events.OrderCreated
+﻿namespace MunCode.munERP.Accounting.Model.Messages.Events.OrderCreated
 {
     using System;
     using System.Collections.Generic;
 
     using MunCode.Core.Design.Domain;
     using MunCode.Core.Guards;
+    using MunCode.Core.Messaging.Messages;
+    using MunCode.munERP.Accounting.Model.Messages.Events;
 
-    public class OrderCreatedData
+    public class OrderCreated : IEvent
     {
-        public OrderCreatedData(
+        public OrderCreated(
             int customerId,
             Guid orderId,
             Money orderTotal,

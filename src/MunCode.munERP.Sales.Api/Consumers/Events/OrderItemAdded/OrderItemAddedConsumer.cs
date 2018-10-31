@@ -9,17 +9,17 @@
     using MunCode.Core.Messaging.Messages;
     using MunCode.munERP.Sales.Model.Messages.Events.OrderItemAdded;
     using MunCode.munERP.Sales.Model.Messages.Requests;
+    using MunCode.munERP.Sales.Model.Messages.Responses;
     using MunCode.munERP.Sales.Model.Read;
 
     using OrderItem = MunCode.munERP.Sales.Model.Read.OrderItem;
 
-    public abstract class OrderItemAddedConsumer<TOrderItemAdded> : IEventConsumer<TOrderItemAdded>
-        where TOrderItemAdded : OrderItemAdded
+    public class OrderItemAddedConsumer : IEventConsumer<OrderItemAdded>
     {
         private readonly IUnitOfWork uow;
         private readonly IRequestBus requestBus;
 
-        protected OrderItemAddedConsumer(IUnitOfWork uow, IMessageBus requestBus)
+        public OrderItemAddedConsumer(IUnitOfWork uow, IMessageBus requestBus)
         {
             Guard.NotNull(requestBus, nameof(requestBus));
             Guard.NotNull(uow, nameof(uow));
@@ -27,35 +27,39 @@
             this.requestBus = requestBus;
         }
 
-        public abstract OrderStatusEnum OrderStatus { get; }
-
-        public virtual async Task Consume(ReceiveContext<TOrderItemAdded> messageContext)
+        public virtual async Task Consume(ReceiveContext<OrderItemAdded> messageContext)
         {
-            var messageData = messageContext.Message.Data;
-            var orderStatus = await this.GetOrderStatus();
+            var message = messageContext.Message;
+            var orderStatus = await this.GetOrderStatus(message.OrderStatus);
             this.uow.Update<OrderReview>()
-                .SetReference(o => o.OrderTotal, messageData.OrderTotal)
+                .SetReference(o => o.OrderTotal, message.OrderTotal)
                 .SetValue(o => o.OrderStatusDescription, orderStatus.Description)
-                .Where(o => o.Id, messageData.OrderId);
+                .Where(o => o.Id, message.OrderId);
 
-            var request = new GetProduct(messageData.OrderItem.ProductId);
+            var request = new GetProduct(message.OrderItem.ProductId);
             var product = await this.requestBus.Request<GetProduct, Product>(request);
 
             var item = new OrderItem(
-                messageData.OrderId,
-                messageData.OrderItem.LineNumber,
+                message.OrderId,
+                message.OrderItem.LineNumber,
                 product.Name,
-                messageData.OrderItem.Quantity,
-                messageData.OrderItem.Price);
+                message.OrderItem.Quantity,
+                message.OrderItem.Price);
 
             this.uow.Add(item);
 
             await this.uow.Save();
+
+            if (message.OrderStatus == OrderStatusEnum.OrderSuspended)
+            {
+                var response = new OrderStatusResponse(orderStatus.LongDescription);
+                await messageContext.Respond(response);
+            }
         }
 
-        protected Task<OrderStatus> GetOrderStatus()
+        protected Task<OrderStatus> GetOrderStatus(OrderStatusEnum orderStatus)
         {
-            var orderStatusRequest = new GetOrderStatus(this.OrderStatus);
+            var orderStatusRequest = new GetOrderStatus(orderStatus);
             return this.requestBus.Request<GetOrderStatus, OrderStatus>(orderStatusRequest);
         }
     }

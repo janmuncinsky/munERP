@@ -7,6 +7,7 @@
     using MunCode.Core.Design.Domain;
     using MunCode.Core.Guards;
     using MunCode.munERP.Accounting.Model.Messages.Events;
+    using MunCode.munERP.Accounting.Model.Messages.Events.ReceivableBooked;
 
     public class CustomerBalance : Aggregate<int>
     {
@@ -36,15 +37,19 @@
         public void BookReceivable(Receivable receivable)
         {
             Guard.NotNull(receivable, nameof(receivable));
-            this.receivableTotal += receivable.TryGetCreditCoverage(this.RemainingCredit, this.Id);
+            var bookingResult = receivable.Book(this.RemainingCredit);
+            this.receivableTotal += bookingResult.Coverage;
             this.receivables.Add(receivable);
+            this.RaiseEvent(new ReceivableBooked(bookingResult.OrderId, this.receivableTotal, this.Id, bookingResult.OrderStatus));
         }
 
         public void IncreaseReceivableAmount(Guid orderId, Money newAmount)
         {
             var receivable = this.receivables.Single(r => r.Id == orderId);
             this.receivableTotal -= receivable.IncreaseAmount(newAmount);
-            this.receivableTotal += receivable.TryGetCreditCoverage(this.RemainingCredit, this.Id);
+            var bookingResult = receivable.Book(this.RemainingCredit);
+            this.receivableTotal += bookingResult.Coverage;
+            this.RaiseEvent(new ReceivableBooked(bookingResult.OrderId, this.receivableTotal, this.Id, bookingResult.OrderStatus));
         }
 
         public void BookPayment(Guid orderId, Money paidAmount)
@@ -55,7 +60,12 @@
             foreach (var receivable in this.receivables.OrderBy(o => o, comparer))
             {
                 paidReceivable = receivable.TryBookPayment(orderId, paidAmount) ? receivable : paidReceivable;
-                this.receivableTotal += receivable.GetCreditCoverageWhenSuspended(this.RemainingCredit, this.Id);
+                var bookingResult = receivable.BookIfSuspended(this.RemainingCredit);
+                if (bookingResult != ReceivableBookingResult.EmptyResult)
+                {
+                    this.receivableTotal += bookingResult.Coverage;
+                    this.RaiseEvent(new ReceivableBooked(bookingResult.OrderId, this.receivableTotal, this.Id, bookingResult.OrderStatus));
+                }
             }
 
             Guard.NotNull(paidReceivable, new InvalidOperationException("Cannot find requested receivable."));
@@ -70,7 +80,12 @@
 
             foreach (var receivable in this.receivables.OrderBy(o => o, comparer))
             {
-                this.receivableTotal += receivable.GetCreditCoverageWhenSuspended(this.RemainingCredit, this.Id);
+                var bookingResult = receivable.BookIfSuspended(this.RemainingCredit);
+                if (bookingResult != ReceivableBookingResult.EmptyResult)
+                {
+                    this.receivableTotal += bookingResult.Coverage;
+                    this.RaiseEvent(new ReceivableBooked(bookingResult.OrderId, this.receivableTotal, this.Id, bookingResult.OrderStatus));
+                }
             }
         }
     }

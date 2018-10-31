@@ -4,8 +4,8 @@
     using System.Collections.Generic;
 
     using MunCode.Core.Design.Domain;
-    using MunCode.Core.Messaging.Messages;
     using MunCode.munERP.Accounting.Model.Messages.Events.ReceivableBooked;
+    using MunCode.munERP.Accounting.Model.Read;
 
     public class Receivable : Entity<Guid>
     {
@@ -59,34 +59,33 @@
             return oldAmount;
         }
 
-        public Money TryGetCreditCoverage(Money remainingCredit, int customerBalanceId)
+        public ReceivableBookingResult Book(Money remainingCredit)
         {
-            var coverage = this.TryGetCreditCoverageInternal(remainingCredit, () => new ReceivableAccepted(this.Id, this.amount, customerBalanceId));
+            var coverage = this.BookInternal(remainingCredit);
+            var status = OrderStatusEnum.ReceivableAccepted;
             if (coverage == Money.Default)
             {
-                this.RaiseEvent(new ReceivableSuspended(this.Id));
+                status = OrderStatusEnum.ReceivableSuspended;
             }
 
-            return coverage;
+            return new ReceivableBookingResult(this.Id, coverage, status);
         }
 
-        public Money GetCreditCoverageWhenSuspended(Money remainingCredit, int customerBalanceId)
+        public ReceivableBookingResult BookIfSuspended(Money remainingCredit)
         {
             if (this.isSuspended)
             {
-                return this.TryGetCreditCoverageInternal(remainingCredit, () => new ReceivableUnsuspended(this.Id, this.amount, customerBalanceId));
+                return this.Book(remainingCredit);
             }
 
-            return Money.Default;
+            return ReceivableBookingResult.EmptyResult;
         }
 
-        protected virtual Money TryGetCreditCoverageInternal<TValidEvent>(Money remainingCredit, Func<TValidEvent> validEventFactory)
-            where TValidEvent : IEvent
+        protected virtual Money BookInternal(Money remainingCredit)
         {
             if (this.amount <= remainingCredit)
             {
                 this.isSuspended = false;
-                this.RaiseEvent(validEventFactory());
                 return this.amount;
             }
 

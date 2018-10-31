@@ -1,4 +1,4 @@
-﻿namespace MunCode.munERP.Accounting.Api.Consumers.Events.OrderItemAdded
+﻿namespace MunCode.munERP.Accounting.Api.Consumers.Events.OrderItemAdded.Unsuspended
 {
     using System.Threading.Tasks;
 
@@ -9,22 +9,24 @@
     using MunCode.munERP.Accounting.Model.Domain;
     using MunCode.munERP.Accounting.Model.Messages.Events.OrderItemAdded;
 
-    public class ItemAddedToAcceptedOrderConsumer : IEventConsumer<ItemAddedToAcceptedOrder> 
+    [ConsumerOfTopic("OrderItemUnsuspended")]
+    public class OrderItemAddedConsumer : IEventConsumer<OrderItemAdded>
     {
         private readonly IRepository<CustomerBalance, int> repository;
 
-        public ItemAddedToAcceptedOrderConsumer(IRepository<CustomerBalance, int> repository)
+        public OrderItemAddedConsumer(IRepository<CustomerBalance, int> repository)
         {
             Guard.NotNull(repository, nameof(repository));
             this.repository = repository;
         }
 
-        public async Task Consume(ReceiveContext<ItemAddedToAcceptedOrder> messageContext)
+        public async Task Consume(ReceiveContext<OrderItemAdded> messageContext)
         {
             Guard.NotNull(messageContext, nameof(messageContext));
-            var messageData = messageContext.Message.Data;
-            var customerBalance = await this.repository.Get(messageData.CustomerId);
-            customerBalance.IncreaseReceivableAmount(messageData.OrderId, messageData.OrderTotal);
+            var message = messageContext.Message;
+            var customerBalance = await this.repository.Get(message.CustomerId);
+            var receivable = Receivable.Create(message.OrderId, message.OrderTotal);
+            customerBalance.BookReceivable(receivable);
             await this.repository.Save(customerBalance);
         }
     }

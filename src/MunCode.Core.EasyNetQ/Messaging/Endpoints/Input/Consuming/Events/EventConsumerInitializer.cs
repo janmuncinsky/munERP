@@ -1,5 +1,7 @@
 ﻿namespace MunCode.Core.Messaging.Endpoints.Input.Consuming.Events
 {
+    using System;
+
     using global::EasyNetQ;
 
     using MunCode.Core.Guards;
@@ -32,16 +34,26 @@
 
         public void Initialize()
         {
+            const string DefaultTopic = "#";
+
             var bus = this.easyNetQBus.Advanced;
             var queueName = bus.Conventions.QueueNamingConvention(typeof(TEvent), this.eventConsumerDefinition.MessageConsumerName);
             var exchangeName = bus.Conventions.ExchangeNamingConvention(typeof(TEvent));
             var queue = this.easyNetQBus.Advanced.QueueDeclare(queueName);
             var exchange = bus.ExchangeDeclare(exchangeName, "topic");
-            bus.Bind(exchange, queue, "#");
+            var topic = DefaultTopic;
+
+            if (Attribute.GetCustomAttribute(this.eventConsumerDefinition.MessageConsumerType, typeof(ConsumerOfTopicAttribute)) 
+                    is ConsumerOfTopicAttribute topicConsumer)
+            {
+                topic = topicConsumer.Topic;
+            }
+
+            bus.Bind(exchange, queue, topic);
 
             bus.Consume<TEvent>(
                 queue,
-                (message, messageReceivedInfo) => this.dispatcher.Dispatch(message),
+                (message, messageReceivedInfo) => this.dispatcher.Dispatch(message, topic == DefaultTopic ? string.Empty : topic),
                 x => { x.WithPrefetchCount(this.connectionConfiguration.PrefetchCount); });
         }
     }

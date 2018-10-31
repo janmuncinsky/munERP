@@ -34,7 +34,7 @@ namespace MunCode.Core.Messaging.Endpoints.Input.Consuming.Commands
         public void Initialize()
         {
             var queue = this.DeclareQueue(this.commandConsumerDefinition.MessageName);
-            this.easyNetQBus.Advanced.Consume(queue, (IMessage<TCommand> message, MessageReceivedInfo info) => this.dispatcher.Dispatch(message));
+            this.easyNetQBus.Advanced.Consume(queue, (IMessage<TCommand> message, MessageReceivedInfo info) => this.dispatcher.Dispatch(message, string.Empty));
         }
 
         private IQueue DeclareQueue(string queueName)

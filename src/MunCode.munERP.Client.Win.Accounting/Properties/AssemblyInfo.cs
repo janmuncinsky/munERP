@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
@@ -8,9 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MunCode.munERP.Client.Win.Accounting")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jenoptik AG")]
 [assembly: AssemblyProduct("MunCode.munERP.Client.Win.Accounting")]
-[assembly: AssemblyCopyright("Copyright © Jenoptik AG 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -12,13 +12,12 @@
     using MunCode.munERP.Sales.Model.Messages.Responses;
     using MunCode.munERP.Sales.Model.Read;
 
-    public abstract class ReceivableBookedConsumer<TEvent> : IEventConsumer<TEvent>
-        where TEvent : ReceivableBooked
+    public class ReceivableBookedConsumer : IEventConsumer<ReceivableBooked>
     {
         private readonly IUnitOfWork uow;
         private readonly IRequestBus requestBus;
 
-        protected ReceivableBookedConsumer(IUnitOfWork uow, IRequestBus requestBus)
+        public ReceivableBookedConsumer(IUnitOfWork uow, IRequestBus requestBus)
         {
             Guard.NotNull(requestBus, nameof(requestBus));
             Guard.NotNull(uow, nameof(uow));
@@ -26,12 +25,10 @@
             this.requestBus = requestBus;
         }
 
-        public abstract OrderStatusEnum OrderStatus { get; }
-
-        public async Task Consume(ReceiveContext<TEvent> messageContext)
+        public async Task Consume(ReceiveContext<ReceivableBooked> messageContext)
         {
             var @event = messageContext.Message;
-            var orderStatusRequest = new GetOrderStatus(this.OrderStatus);
+            var orderStatusRequest = new GetOrderStatus(@event.OrderStatus);
             var orderStatus = await this.requestBus.Request<GetOrderStatus, OrderStatus>(orderStatusRequest);
             this.uow.Update<OrderReview>()
                 .SetValue(o => o.OrderStatusDescription, orderStatus.Description)

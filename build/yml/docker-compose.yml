@@ -22,14 +22,11 @@ services:
       - ASPNETCORE_APPLICATIONKEY=muncode.munerp.accounting.api
       - DatabaseConfig__ConnectionString=${AccountingDatabaseConnectionString}
       - EasyNetQConfig__ConnectionString=${RabbitMQConnectionString}
-      - EasyNetQInputConfig__Messages__0=AcceptedOrderCreated
-      - EasyNetQInputConfig__Messages__1=ItemAddedToAcceptedOrder
-      - EasyNetQInputConfig__Messages__2=ItemAddedToUnsuspendedOrder
-      - EasyNetQInputConfig__Messages__3=ReceivableAccepted
-      - EasyNetQInputConfig__Messages__4=ReceivableSuspended
-      - EasyNetQInputConfig__Messages__5=GetAllCustomerBalanceReviews
-      - EasyNetQOutputConfig__Messages__0=ReceivableAccepted
-      - EasyNetQOutputConfig__Messages__1=ReceivableSuspended
+      - EasyNetQInputConfig__Messages__0=OrderCreated
+      - EasyNetQInputConfig__Messages__1=OrderItemAdded
+      - EasyNetQInputConfig__Messages__2=ReceivableBooked
+      - EasyNetQInputConfig__Messages__3=GetAllCustomerBalanceReviews
+      - EasyNetQOutputConfig__Messages__0=ReceivableBooked
     build:
       context: ../output
       dockerfile: muncode.munerp.accounting.api.df
@@ -45,22 +42,15 @@ services:
       - EasyNetQConfig__ConnectionString=${RabbitMQConnectionString}
       - EasyNetQInputConfig__Messages__0=CreateOrder
       - EasyNetQInputConfig__Messages__1=AddOrderItem
-      - EasyNetQInputConfig__Messages__2=AcceptedOrderCreated
-      - EasyNetQInputConfig__Messages__3=SuspendedOrderCreated
-      - EasyNetQInputConfig__Messages__4=ItemAddedToAcceptedOrder
-      - EasyNetQInputConfig__Messages__5=ItemAddedToSuspendedOrder
-      - EasyNetQInputConfig__Messages__6=ItemAddedToUnsuspendedOrder
-      - EasyNetQInputConfig__Messages__7=GetAllCustomers
-      - EasyNetQInputConfig__Messages__8=GetAllOrderReviews
-      - EasyNetQInputConfig__Messages__9=GetAllProducts
-      - EasyNetQInputConfig__Messages__10=ReceivableAccepted
-      - EasyNetQInputConfig__Messages__11=ReceivableSuspended
-      - EasyNetQOutputConfig__Messages__0=AcceptedOrderCreated
-      - EasyNetQOutputConfig__Messages__1=SuspendedOrderCreated
-      - EasyNetQOutputConfig__Messages__2=ItemAddedToAcceptedOrder
-      - EasyNetQOutputConfig__Messages__3=ItemAddedToSuspendedOrder
-      - EasyNetQOutputConfig__Messages__4=ItemAddedToUnsuspendedOrder
-      - EasyNetQOutputConfig__Messages__5=OrderStatusResponse
+      - EasyNetQInputConfig__Messages__2=OrderCreated
+      - EasyNetQInputConfig__Messages__3=OrderItemAdded
+      - EasyNetQInputConfig__Messages__4=GetAllCustomers
+      - EasyNetQInputConfig__Messages__5=GetAllOrderReviews
+      - EasyNetQInputConfig__Messages__6=GetAllProducts
+      - EasyNetQInputConfig__Messages__7=ReceivableBooked
+      - EasyNetQOutputConfig__Messages__0=OrderCreated
+      - EasyNetQOutputConfig__Messages__1=OrderItemAdded
+      - EasyNetQOutputConfig__Messages__2=OrderStatusResponse
       - InMemoryOutputConfig__Messages__0=GetCustomer
       - InMemoryOutputConfig__Messages__1=GetProduct
       - InMemoryOutputConfig__Messages__2=GetOrderStatus

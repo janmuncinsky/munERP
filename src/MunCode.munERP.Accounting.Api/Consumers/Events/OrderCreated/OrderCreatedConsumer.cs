@@ -1,4 +1,4 @@
-﻿namespace MunCode.munERP.Accounting.Api.Consumers.Events
+﻿namespace MunCode.munERP.Accounting.Api.Consumers.Events.OrderCreated
 {
     using System.Threading.Tasks;
 
@@ -9,22 +9,23 @@
     using MunCode.munERP.Accounting.Model.Domain;
     using MunCode.munERP.Accounting.Model.Messages.Events.OrderCreated;
 
-    public class AcceptedOrderCreatedConsumer : IEventConsumer<AcceptedOrderCreated>
+    [ConsumerOfTopic("OrderAccepted")]
+    public class OrderCreatedConsumer : IEventConsumer<OrderCreated>
     {
         private readonly IRepository<CustomerBalance, int> repository;
 
-        public AcceptedOrderCreatedConsumer(IRepository<CustomerBalance, int> repository)
+        public OrderCreatedConsumer(IRepository<CustomerBalance, int> repository)
         {
             Guard.NotNull(repository, nameof(repository));
             this.repository = repository;
         }
 
-        public async Task Consume(ReceiveContext<AcceptedOrderCreated> messageContext)
+        public async Task Consume(ReceiveContext<OrderCreated> messageContext)
         {
             Guard.NotNull(messageContext, nameof(messageContext));
-            var messageData = messageContext.Message.Data;
-            var customerBalance = await this.repository.Get(messageData.CustomerId);
-            var receivable = Receivable.Create(messageData.OrderId, messageData.OrderTotal);
+            var message = messageContext.Message;
+            var customerBalance = await this.repository.Get(message.CustomerId);
+            var receivable = Receivable.Create(message.OrderId, message.OrderTotal);
             customerBalance.BookReceivable(receivable);
             await this.repository.Save(customerBalance);
         }

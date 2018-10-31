@@ -6,6 +6,6 @@
 
     public interface IInputMessageChannel
     {
-        Task<TResponse> Dispatch<TMessage, TResponse>(ReceiveContext<TMessage> message);
+        Task<TResponse> Dispatch<TMessage, TResponse>(ReceiveContext<TMessage> context, string topic = "");
     }
 }

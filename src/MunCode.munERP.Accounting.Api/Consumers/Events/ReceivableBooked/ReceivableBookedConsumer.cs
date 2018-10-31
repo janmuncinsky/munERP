@@ -1,4 +1,4 @@
-﻿namespace MunCode.munERP.Accounting.Api.Consumers.Events.ReceivableAccepted
+﻿namespace MunCode.munERP.Accounting.Api.Consumers.Events.ReceivableBooked
 {
     using System.Threading.Tasks;
 
@@ -9,22 +9,21 @@
     using MunCode.munERP.Accounting.Model.Messages.Events.ReceivableBooked;
     using MunCode.munERP.Accounting.Model.Read;
 
-    public abstract class ReceivableAcceptedConsumer<TEvent> : IEventConsumer<TEvent>
-        where TEvent : ReceivableAccepted
+    public class ReceivableBookedConsumer : IEventConsumer<ReceivableBooked>
     {
         private readonly IUnitOfWork uow;
 
-        protected ReceivableAcceptedConsumer(IUnitOfWork uow)
+        public ReceivableBookedConsumer(IUnitOfWork uow)
         {
             Guard.NotNull(uow, nameof(uow));
             this.uow = uow;
         }
 
-        public Task Consume(ReceiveContext<TEvent> messageContext)
+        public Task Consume(ReceiveContext<ReceivableBooked> messageContext)
         {
             var message = messageContext.Message;
             this.uow.Update<CustomerBalanceReview>()
-                .SetReference(c => c.ReceivableTotal, message.Amount)
+                .SetReference(c => c.ReceivableTotal, message.ReceivableTotal)
                 .Where(r => r.Id, message.CustomerBalanceId);
 
             return this.uow.Save();

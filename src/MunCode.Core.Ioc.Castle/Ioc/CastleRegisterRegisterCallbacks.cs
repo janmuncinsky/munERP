@@ -17,9 +17,9 @@
         }
 
         public ContainerRegisterCallback SingletonRegisterCallback =>
-            (s, t) => this.kernel.Register(Component.For(s).ImplementedBy(t).LifestyleSingleton());
+            (s, t, n) => this.kernel.Register(Component.For(s).ImplementedBy(t).LifestyleSingleton().NamedIfNotEmpty(n));
 
         public ContainerRegisterCallback CallScopeRegisterCallback =>
-            (s, t) => this.kernel.Register(Component.For(s).ImplementedBy(t).LifestyleScoped());
+            (s, t, n) => this.kernel.Register(Component.For(s).ImplementedBy(t).LifestyleScoped().NamedIfNotEmpty(n));
     }
 }
