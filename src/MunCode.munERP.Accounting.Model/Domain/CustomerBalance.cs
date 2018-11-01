@@ -60,12 +60,7 @@
             foreach (var receivable in this.receivables.OrderBy(o => o, comparer))
             {
                 paidReceivable = receivable.TryBookPayment(orderId, paidAmount) ? receivable : paidReceivable;
-                var bookingResult = receivable.BookIfSuspended(this.RemainingCredit);
-                if (bookingResult != ReceivableBookingResult.EmptyResult)
-                {
-                    this.receivableTotal += bookingResult.Coverage;
-                    this.RaiseEvent(new ReceivableBooked(bookingResult.OrderId, this.receivableTotal, this.Id, bookingResult.OrderStatus));
-                }
+                this.BookIfSuspended(receivable);
             }
 
             Guard.NotNull(paidReceivable, new InvalidOperationException("Cannot find requested receivable."));
@@ -80,12 +75,17 @@
 
             foreach (var receivable in this.receivables.OrderBy(o => o, comparer))
             {
-                var bookingResult = receivable.BookIfSuspended(this.RemainingCredit);
-                if (bookingResult != ReceivableBookingResult.EmptyResult)
-                {
-                    this.receivableTotal += bookingResult.Coverage;
-                    this.RaiseEvent(new ReceivableBooked(bookingResult.OrderId, this.receivableTotal, this.Id, bookingResult.OrderStatus));
-                }
+                this.BookIfSuspended(receivable);
+            }
+        }
+
+        private void BookIfSuspended(Receivable receivable)
+        {
+            var bookingResult = receivable.BookIfSuspended(this.RemainingCredit);
+            if (bookingResult != ReceivableBookingResult.EmptyResult)
+            {
+                this.receivableTotal += bookingResult.Coverage;
+                this.RaiseEvent(new ReceivableBooked(bookingResult.OrderId, this.receivableTotal, this.Id, bookingResult.OrderStatus));
             }
         }
     }
