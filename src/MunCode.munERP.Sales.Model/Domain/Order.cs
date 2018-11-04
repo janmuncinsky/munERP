@@ -48,16 +48,16 @@
             this.orderTotal = SumAmount(this.orderTotal, new[] { item });
             this.CheckStatus();
             var orderStatus = OrderStatusEnum.OrderSuspended;
-            var itemStatus = OrderItemAdded.OrderItemStatusEnum.OrderItemSuspended;
+            var itemOrderStatus = OrderItemAdded.OrderStatusEnum.OrderSuspended;
             if (!this.isSuspended)
             {
                 orderStatus = OrderStatusEnum.OrderAccepted;
-                itemStatus = wasSuspended
-                        ? OrderItemAdded.OrderItemStatusEnum.OrderItemUnsuspended
-                        : OrderItemAdded.OrderItemStatusEnum.OrderItemAccepted;
+                itemOrderStatus = wasSuspended
+                        ? OrderItemAdded.OrderStatusEnum.OrderUnsuspended
+                        : OrderItemAdded.OrderStatusEnum.OrderAccepted;
             }
 
-            var orderItemAdded = new OrderItemAdded(this.Id, this.customerId, this.orderTotal, item, orderStatus, itemStatus);
+            var orderItemAdded = new OrderItemAdded(this.Id, this.customerId, this.orderTotal, item, orderStatus, itemOrderStatus);
             this.RaiseEvent(orderItemAdded);
         }
 

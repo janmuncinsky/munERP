@@ -9,7 +9,7 @@
     using MunCode.munERP.Accounting.Model.Domain;
     using MunCode.munERP.Accounting.Model.Messages.Events.OrderItemAdded;
 
-    [ConsumerOfTopic("OrderItemUnsuspended")]
+    [ConsumerOfTopic("OrderUnsuspended")]
     public class OrderItemAddedConsumer : IEventConsumer<OrderItemAdded>
     {
         private readonly IRepository<CustomerBalance, int> repository;

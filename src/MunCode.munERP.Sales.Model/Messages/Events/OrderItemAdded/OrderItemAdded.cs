@@ -16,8 +16,8 @@
             int customerId,
             Money orderTotal,
             OrderItem orderItem,
-            OrderStatusEnum orderStatus,
-            OrderItemStatusEnum itemStatus)
+            Read.OrderStatusEnum orderStatus,
+            OrderStatusEnum itemOrderStatus)
         {
             Guard.NotNull(orderItem, nameof(orderItem));
             this.OrderId = orderId;
@@ -25,14 +25,14 @@
             this.OrderTotal = orderTotal;
             this.OrderItem = orderItem;
             this.OrderStatus = orderStatus;
-            this.Topic = itemStatus.ToString();
+            this.Topic = itemOrderStatus.ToString();
         }
 
-        public enum OrderItemStatusEnum
+        public enum OrderStatusEnum
         {
-            OrderItemUnsuspended,
-            OrderItemAccepted,
-            OrderItemSuspended
+            OrderUnsuspended,
+            OrderAccepted,
+            OrderSuspended
         }
 
         public Guid OrderId { get; }
@@ -43,7 +43,7 @@
 
         public OrderItem OrderItem { get; }
 
-        public OrderStatusEnum OrderStatus { get; }
+        public Read.OrderStatusEnum OrderStatus { get; }
 
         public string Topic { get; }
     }
