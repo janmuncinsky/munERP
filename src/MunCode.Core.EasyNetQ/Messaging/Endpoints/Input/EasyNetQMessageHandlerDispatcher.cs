@@ -23,9 +23,9 @@ namespace MunCode.Core.Messaging.Endpoints.Input
         public Task Dispatch<TMessage>(IMessage<TMessage> message, string topic)
         {
             Guard.NotNull(message, nameof(message));
-            var metaData = new MessageMetadata(message.Properties.ReplyTo, message.Properties.CorrelationId);
+            var metaData = new MessageMetadata(message.Properties.ReplyTo, message.Properties.CorrelationId, topic);
             var context = this.factory.Create<ReceiveContext<TMessage>, TMessage>(message.Body, metaData);
-            return this.dispatcher.Dispatch<TMessage, EmptyResponse>(context, topic);
+            return this.dispatcher.Dispatch<TMessage, EmptyResponse>(context);
         }
     }
 }

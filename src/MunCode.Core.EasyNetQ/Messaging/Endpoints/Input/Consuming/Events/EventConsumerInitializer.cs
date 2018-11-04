@@ -34,14 +34,12 @@
 
         public void Initialize()
         {
-            const string DefaultTopic = "#";
-
             var bus = this.easyNetQBus.Advanced;
             var queueName = bus.Conventions.QueueNamingConvention(typeof(TEvent), this.eventConsumerDefinition.MessageConsumerName);
             var exchangeName = bus.Conventions.ExchangeNamingConvention(typeof(TEvent));
             var queue = this.easyNetQBus.Advanced.QueueDeclare(queueName);
             var exchange = bus.ExchangeDeclare(exchangeName, "topic");
-            var topic = DefaultTopic;
+            var topic = "#";
 
             if (Attribute.GetCustomAttribute(this.eventConsumerDefinition.MessageConsumerType, typeof(ConsumerOfTopicAttribute)) 
                     is ConsumerOfTopicAttribute topicConsumer)
@@ -53,7 +51,7 @@
 
             bus.Consume<TEvent>(
                 queue,
-                (message, messageReceivedInfo) => this.dispatcher.Dispatch(message, topic == DefaultTopic ? string.Empty : topic),
+                (message, messageReceivedInfo) => this.dispatcher.Dispatch(message, topic),
                 x => { x.WithPrefetchCount(this.connectionConfiguration.PrefetchCount); });
         }
     }

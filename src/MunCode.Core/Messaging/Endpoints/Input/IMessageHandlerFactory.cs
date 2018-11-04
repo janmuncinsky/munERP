@@ -2,6 +2,6 @@
 {
     public interface IMessageHandlerFactory
     {
-        IMessageHandler<TMessage, TResponse> Create<TMessage, TResponse>(string name);
+        IMessageHandler<TMessage, TResponse> Create<TMessage, TResponse>();
     }
 }

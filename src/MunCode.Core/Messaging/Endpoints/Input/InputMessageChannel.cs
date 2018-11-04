@@ -19,7 +19,7 @@ namespace MunCode.Core.Messaging.Endpoints.Input
             this.factory = factory;
         }
 
-        public Task<TResponse> Dispatch<TMessage, TResponse>(ReceiveContext<TMessage> context, string topic = "")
+        public Task<TResponse> Dispatch<TMessage, TResponse>(ReceiveContext<TMessage> context)
         {
             Guard.NotNull(context, nameof(context));
 
@@ -27,7 +27,7 @@ namespace MunCode.Core.Messaging.Endpoints.Input
             {
                 try
                 {
-                    return this.factory.Create<TMessage, TResponse>(topic).Handle(c);
+                    return this.factory.Create<TMessage, TResponse>().Handle(c);
                 }
                 catch (Exception e)
                 {

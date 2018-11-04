@@ -14,6 +14,7 @@
     using MunCode.Core.Messaging.Endpoints.Filters.PostHandling;
     using MunCode.Core.Messaging.Endpoints.Filters.PreHandling;
     using MunCode.Core.Messaging.Endpoints.Input;
+    using MunCode.Core.Messaging.Endpoints.Input.Consuming;
     using MunCode.Core.Messaging.Endpoints.Output;
     using MunCode.Core.Messaging.Messages;
 
@@ -38,9 +39,10 @@
                 Component.For<IMessageHandlerFiltersFactory>().AsFactory().LifestyleSingleton(),
                 Component.For<IMessageContextFactory>().AsFactory().LifestyleSingleton(),
                 Component.For<IInputMessageChannel>().ImplementedBy<InputMessageChannel>().LifestyleSingleton(),
-                Component.For<IMessageHandlerFactory>().AsFactory(f => f.SelectedWith(new ByArgumentComponentSelector())).LifestyleSingleton(),
+                Component.For<IMessageHandlerFactory>().AsFactory().LifestyleSingleton(),
                 Component.For<IMessageBus, IRequestBus, ICommandBus, IEventBus>().ImplementedBy<MediatorBus>().LifestyleSingleton(),
                 Component.For<IOutputMessageChannel>().ImplementedBy<MessageRouter>().LifestyleSingleton(),
+                Component.For<ITopicDispatcher>().ImplementedBy<TopicDispatcher>().LifestyleSingleton(),
                 Component.For(typeof(MessageChannelConfigurator<>)).LifestyleSingleton());
             container.RegisterOutputMessageChannel<InMemoryOutputMessageChannel, InMemoryOutputConfig>();
         }

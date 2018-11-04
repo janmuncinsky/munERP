@@ -1,6 +1,5 @@
 namespace MunCode.Core.Messaging.Endpoints.Output
 {
-    using System;
     using System.Threading.Tasks;
 
     using MunCode.Core.Design.Domain;
@@ -21,26 +20,26 @@ namespace MunCode.Core.Messaging.Endpoints.Output
         public Task Send<TCommand>(SendContext<TCommand> context)
             where TCommand : class, ICommand
         {
-            return this.inputMessageChannel.Dispatch<TCommand, EmptyResponse>(this.CreateContext(context), this.GetTopic(context.Message));
+            return this.inputMessageChannel.Dispatch<TCommand, EmptyResponse>(this.CreateContext(context));
         }
 
         public Task Publish<TEvent>(SendContext<TEvent> context)
             where TEvent : class, IEvent
         {
-            return this.inputMessageChannel.Dispatch<TEvent, EmptyResponse>(this.CreateContext(context), this.GetTopic(context.Message));
+            return this.inputMessageChannel.Dispatch<TEvent, EmptyResponse>(this.CreateContext(context));
         }
 
         public Task<TResponse> Request<TRequest, TResponse>(SendContext<TRequest> context)
             where TRequest : class, IRequest<TResponse> 
             where TResponse : class
         {
-            return this.inputMessageChannel.Dispatch<TRequest, TResponse>(this.CreateContext(context), this.GetTopic(context.Message));
+            return this.inputMessageChannel.Dispatch<TRequest, TResponse>(this.CreateContext(context));
         }
 
         public Task Respond<TResponse>(SendContext<TResponse> context)
             where TResponse : class
         {
-            return this.inputMessageChannel.Dispatch<TResponse, EmptyResponse>(this.CreateContext(context), this.GetTopic(context.Message));
+            return this.inputMessageChannel.Dispatch<TResponse, EmptyResponse>(this.CreateContext(context));
         }
 
         private string GetTopic<TMessage>(TMessage message)
