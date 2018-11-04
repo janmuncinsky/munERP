@@ -22,7 +22,7 @@
             this.bus = bus;
         }
 
-        public string DisplayName { get; set; } = Translation.menuAccounting;
+        public string DisplayName { get; set; } = Translation.menuCustomerBalanceReview;
 
         public IEnumerable<CustomerBalanceReview> CustomerBalanceReviews { get; private set; }
 
