@@ -1,4 +1,4 @@
-﻿namespace MunCode.munERP.Client.Win.Sales.UI.CreateOrder
+﻿namespace MunCode.munERP.Client.Win.Sales.UI.Dialogs
 {
     using System.Collections.Generic;
     using System.Linq;

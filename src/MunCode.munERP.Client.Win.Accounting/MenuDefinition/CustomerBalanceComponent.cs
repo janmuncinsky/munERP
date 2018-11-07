@@ -7,7 +7,7 @@
     using MunCode.Core.Wpf.DialogService;
     using MunCode.Core.Wpf.DocumentModel.Menu;
     using MunCode.munERP.Client.Win.Accounting.Resources;
-    using MunCode.munERP.Client.Win.Accounting.UI.CustomerBalance;
+    using MunCode.munERP.Client.Win.Accounting.UI.Documents;
 
     [Component(typeof(AccountingMenuComposite))]
     public class CustomerBalanceReviewComponent : MenuComponent<CustomerBalanceReviewViewModel>

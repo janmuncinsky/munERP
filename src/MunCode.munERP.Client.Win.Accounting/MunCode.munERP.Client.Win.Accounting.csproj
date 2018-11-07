@@ -70,10 +70,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Translation.resx</DependentUpon>
     </Compile>
-    <Compile Include="UI\CustomerBalance\CustomerBalanceView.xaml.cs">
-      <DependentUpon>CustomerBalanceView.xaml</DependentUpon>
+    <Compile Include="UI\Documents\CustomerBalanceReview\Document.xaml.cs">
+      <DependentUpon>Document.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\CustomerBalance\CustomerBalanceViewModel.cs" />
+    <Compile Include="UI\Documents\CustomerBalanceReviewViewModel.cs" />
+    <Compile Include="UI\Documents\CustomerBalanceReview\ToolBar.xaml.cs">
+      <DependentUpon>ToolBar.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Translation.resx">
@@ -91,10 +94,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="UI\CustomerBalance\CustomerBalanceView.xaml">
+    <Page Include="UI\Documents\CustomerBalanceReview\Document.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Documents\CustomerBalanceReview\ToolBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

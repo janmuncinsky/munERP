@@ -1,4 +1,4 @@
-﻿namespace MunCode.munERP.Client.Win.Sales.UI.CreateOrder
+﻿namespace MunCode.munERP.Client.Win.Sales.UI.Documents.CreateOrder
 {
     using MunCode.munERP.Client.Win.Sales.Model.Read;
 

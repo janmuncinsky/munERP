@@ -1,4 +1,4 @@
-namespace MunCode.munERP.Client.Win.Sales.UI.OrderReview
+namespace MunCode.munERP.Client.Win.Sales.UI.Documents
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -19,7 +19,7 @@ namespace MunCode.munERP.Client.Win.Sales.UI.OrderReview
     {
         private readonly IMessageBus bus;
         private readonly IWindowService windowService;
-        private OrderReview selectedOrder;
+        private Model.Read.OrderReview selectedOrder;
 
         public OrderReviewViewModel(IMessageBus bus, IWindowService windowService)
         {
@@ -31,9 +31,9 @@ namespace MunCode.munERP.Client.Win.Sales.UI.OrderReview
 
         public string DisplayName { get; set; } = Translation.menuOrderReview;
 
-        public IEnumerable<OrderReview> OrderReviews { get; private set; }
+        public IEnumerable<Model.Read.OrderReview> OrderReviews { get; private set; }
 
-        public OrderReview SelectedOrder
+        public Model.Read.OrderReview SelectedOrder
         {
             get => this.selectedOrder;
             set
@@ -48,7 +48,7 @@ namespace MunCode.munERP.Client.Win.Sales.UI.OrderReview
 
         public async Task Initialize()
         {
-            this.OrderReviews = await this.bus.Request<GetAllOrderReviews, OrderReview[]>(new GetAllOrderReviews());
+            this.OrderReviews = await this.bus.Request<GetAllOrderReviews, Model.Read.OrderReview[]>(new GetAllOrderReviews());
             this.SelectedOrder = this.OrderReviews.FirstOrDefault();
             this.NotifyOfPropertyChange(nameof(this.OrderReviews));
         }

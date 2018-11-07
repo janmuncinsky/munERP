@@ -7,7 +7,7 @@
     using MunCode.Core.Wpf.DialogService;
     using MunCode.Core.Wpf.DocumentModel.Menu;
     using MunCode.munERP.Client.Win.Sales.Resources;
-    using MunCode.munERP.Client.Win.Sales.UI.CreateOrder;
+    using MunCode.munERP.Client.Win.Sales.UI.Documents;
 
     [Component(typeof(SalesMenuComposite))]
     public class CreateOrderMenuComponent : MenuComponent<CreateOrderViewModel>

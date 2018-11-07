@@ -12,9 +12,11 @@
     using MunCode.Core.Wpf.DocumentModel;
     using MunCode.Core.Wpf.DocumentModel.Menu;
 
-    public class ShellViewModel : IHandle<OpenDocument>, IHandle<CloseDocument>
+    public class ShellViewModel : Screen, IHandle<OpenDocument>, IHandle<CloseDocument>
     {
         private readonly ObservableCollection<OpenedDocument> documents;
+
+        private object activeDocument;
 
         public ShellViewModel(IStatusBarViewModel statusBarViewModel, IEventAggregator eventAggregator, ICollection<IMenuComponent> menuItems)
         {

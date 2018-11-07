@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="MunCode.munERP.Client.Win.Sales.UI.Documents.OrderReview.Document"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:resources="clr-namespace:MunCode.munERP.Client.Win.Sales.Resources"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:documents="clr-namespace:MunCode.munERP.Client.Win.Sales.UI.Documents"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=documents:OrderReviewViewModel}">
+    <DataGrid DockPanel.Dock="Bottom" ItemsSource="{Binding OrderReviews}" SelectedItem="{Binding SelectedOrder}" AutoGenerateColumns="False">
+        <DataGrid.Resources>
+            <Style TargetType="{x:Type DataGridRow}">
+                <Setter Property="cal:Message.Attach" Value="[Event MouseDoubleClick] = [Action AddItem]"/>
+            </Style>
+        </DataGrid.Resources>
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="{x:Static resources:Translation.Id}" Binding="{Binding Id}"/>
+            <DataGridTextColumn Header="{x:Static resources:Translation.Customer}" Binding="{Binding CustomerName}"/>
+            <DataGridTextColumn Header="{x:Static resources:Translation.OrderTotal}" Binding="{Binding OrderTotal.Amount}"/>
+            <DataGridTextColumn Header="{x:Static resources:Translation.Currency}" Binding="{Binding OrderTotal.Currency}"/>
+            <DataGridTextColumn Header="{x:Static resources:Translation.OrderStatus}" Binding="{Binding OrderStatusDescription}"/>
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

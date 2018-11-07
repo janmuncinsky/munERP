@@ -1,4 +1,4 @@
-namespace MunCode.munERP.Client.Win.Sales.UI.CreateOrder
+namespace MunCode.munERP.Client.Win.Sales.UI.Documents
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -15,6 +15,7 @@ namespace MunCode.munERP.Client.Win.Sales.UI.CreateOrder
     using MunCode.munERP.Client.Win.Sales.Model.Messages.Transactions;
     using MunCode.munERP.Client.Win.Sales.Model.Read;
     using MunCode.munERP.Client.Win.Sales.Resources;
+    using MunCode.munERP.Client.Win.Sales.UI.Documents.CreateOrder;
 
     public class CreateOrderViewModel : PropertyChangedBase, IDocument, ICanBeInitialized
     {
@@ -68,8 +69,8 @@ namespace MunCode.munERP.Client.Win.Sales.UI.CreateOrder
         public async Task CreateOrder()
         {
             var items = this.orderItems.Select(i => new OrderItem(i.LineNumber, i.Product.Id, i.Quantity));
-            var command = new CreateOrder(this.SelectedCustomer.Id, items);
-            var result = await this.bus.Request<CreateOrder, OrderStatusResponse>(command);
+            var command = new Model.Messages.Transactions.CreateOrder(this.SelectedCustomer.Id, items);
+            var result = await this.bus.Request<Model.Messages.Transactions.CreateOrder, OrderStatusResponse>(command);
             this.windowService.ShowMessageBox(result.Description);
         }
 

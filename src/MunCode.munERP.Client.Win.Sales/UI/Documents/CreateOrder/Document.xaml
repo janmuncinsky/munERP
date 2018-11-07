@@ -1,26 +1,19 @@
-﻿<UserControl x:Class="MunCode.munERP.Client.Win.Sales.UI.CreateOrder.CreateOrderView"
+﻿<UserControl x:Class="MunCode.munERP.Client.Win.Sales.UI.Documents.CreateOrder.Document"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:cal="http://www.caliburnproject.org"
-             xmlns:createOrder="clr-namespace:MunCode.munERP.Client.Win.Sales.UI.CreateOrder"
              xmlns:resources="clr-namespace:MunCode.munERP.Client.Win.Sales.Resources"
+             xmlns:documents="clr-namespace:MunCode.munERP.Client.Win.Sales.UI.Documents"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance Type=createOrder:CreateOrderViewModel}">
+             d:DataContext="{d:DesignInstance Type=documents:CreateOrderViewModel}">
     <DockPanel LastChildFill="True">
-        <ToolBarTray DockPanel.Dock="Top" Orientation="Horizontal">
-            <ToolBar>
-                <Button Content="{x:Static resources:Translation.AddItem}" cal:Message.Attach="[Event Click] = [Action AddItem]"/>
-                <Button Content="{x:Static resources:Translation.CreateOrder}" cal:Message.Attach="[Event Click] = [Action CreateOrder]"/>
-            </ToolBar>
-        </ToolBarTray>
-            <Grid DockPanel.Dock="Top" HorizontalAlignment="Left">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label Content="{x:Static resources:Translation.Customer}"  HorizontalAlignment="Left"/>
+        <Grid DockPanel.Dock="Top" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Content="{x:Static resources:Translation.Customer}"  HorizontalAlignment="Left"/>
             <ComboBox Grid.Column="1" ItemsSource="{Binding Customers, Mode=OneWay}"
                       Width="150"
                       SelectedItem="{Binding SelectedCustomer}" 

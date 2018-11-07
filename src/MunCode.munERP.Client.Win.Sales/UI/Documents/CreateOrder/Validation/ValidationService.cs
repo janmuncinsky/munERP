@@ -1,4 +1,4 @@
-﻿namespace MunCode.munERP.Client.Win.Sales.UI.CreateOrder.Validation
+﻿namespace MunCode.munERP.Client.Win.Sales.UI.Documents.CreateOrder.Validation
 {
     using System.Text;
 

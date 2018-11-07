@@ -4,7 +4,7 @@
     using MunCode.Core.Messaging.Endpoints.Filters.Caching;
     using MunCode.Core.Messaging.Messages;
     using MunCode.munERP.Client.Win.Sales.Model.Read;
-    using MunCode.munERP.Client.Win.Sales.UI.CreateOrder;
+    using MunCode.munERP.Client.Win.Sales.UI.Documents;
 
     [Cached]
     [BusyNotifierMessage(typeof(CreateOrderViewModel))]

@@ -4,7 +4,7 @@
 
     using MunCode.Core.Messaging.Endpoints.Filters;
     using MunCode.Core.Messaging.Messages;
-    using MunCode.munERP.Client.Win.Sales.UI.CreateOrder;
+    using MunCode.munERP.Client.Win.Sales.UI.Documents;
 
     [BusyNotifierMessage(typeof(CreateOrderViewModel)), ClosingNotifierMessage(typeof(CreateOrderViewModel))]
     public class CreateOrder : ITransaction<OrderStatusResponse>

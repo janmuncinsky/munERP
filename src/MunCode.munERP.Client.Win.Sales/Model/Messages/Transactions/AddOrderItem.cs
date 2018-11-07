@@ -5,7 +5,7 @@
     using MunCode.Core.Guards;
     using MunCode.Core.Messaging.Endpoints.Filters;
     using MunCode.Core.Messaging.Messages;
-    using MunCode.munERP.Client.Win.Sales.UI.OrderReview;
+    using MunCode.munERP.Client.Win.Sales.UI.Documents;
 
     [BusyNotifierMessage(typeof(OrderReviewViewModel)), ClosingNotifierMessage(typeof(OrderReviewViewModel))]
     public class AddOrderItem : ITransaction<OrderStatusResponse>

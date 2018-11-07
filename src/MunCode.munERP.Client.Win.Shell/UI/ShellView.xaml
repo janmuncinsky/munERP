@@ -32,8 +32,12 @@
                 </Style>
             </Menu.ItemContainerStyle>
         </Menu>
+        <ContentControl DockPanel.Dock="Top" 
+                        cal:View.Model="{Binding ElementName=DockingManager, Path=ActiveContent.DocumentHost.Document, Mode=OneWay}"
+                        cal:View.Context="ToolBar"/>
         <ContentControl DockPanel.Dock="Bottom" cal:View.Model="{Binding StatusBarViewModel}"/>
-        <xcad:DockingManager DocumentsSource="{Binding Documents}">
+        <xcad:DockingManager Name="DockingManager" 
+                             DocumentsSource="{Binding Documents}">
             <xcad:DockingManager.DocumentHeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Content.DocumentHost.DisplayName}"/>
@@ -42,7 +46,7 @@
             <xcad:DockingManager.LayoutItemTemplate>
                 <DataTemplate>
                     <xctk:BusyIndicator IsBusy="{Binding Content.DocumentHost.IsExecuting}">
-                        <ContentControl cal:View.Model="{Binding Content.DocumentHost.Document}"/>
+                        <ContentControl cal:View.Model="{Binding Content.DocumentHost.Document}"  cal:View.Context="Document"/>
                     </xctk:BusyIndicator>
                 </DataTemplate>
             </xcad:DockingManager.LayoutItemTemplate>

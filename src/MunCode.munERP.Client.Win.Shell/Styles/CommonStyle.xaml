@@ -14,4 +14,7 @@
         <Setter Property="IsReadOnly" Value="True"/>
         <Setter Property="AutoGenerateColumns" Value="False"/>
     </Style>
+    <Style TargetType="{x:Type ToolBarTray}">
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
 </ResourceDictionary>

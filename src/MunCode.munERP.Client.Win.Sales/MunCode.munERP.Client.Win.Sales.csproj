@@ -99,22 +99,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Translation.resx</DependentUpon>
     </Compile>
-    <Compile Include="UI\CreateOrder\CreateOrderView.xaml.cs">
-      <DependentUpon>CreateOrderView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\CreateOrder\CreateOrderViewModel.cs" />
-    <Compile Include="UI\CreateOrder\ProductDialogView.xaml.cs">
+    <Compile Include="UI\Dialogs\ProductDialogView.xaml.cs">
       <DependentUpon>ProductDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\CreateOrder\ProductDialogViewModel.cs" />
-    <Compile Include="UI\CreateOrder\Validation\IValidationService.cs" />
-    <Compile Include="UI\CreateOrder\OrderItemViewModel.cs" />
-    <Compile Include="UI\CreateOrder\Validation\OrderValidator.cs" />
-    <Compile Include="UI\CreateOrder\Validation\ValidationService.cs" />
-    <Compile Include="UI\OrderReview\OrderReviewView.xaml.cs">
-      <DependentUpon>OrderReviewView.xaml</DependentUpon>
+    <Compile Include="UI\Documents\CreateOrder\ToolBar.xaml.cs">
+      <DependentUpon>ToolBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderReview\OrderReviewViewModel.cs" />
+    <Compile Include="UI\Documents\CreateOrder\Document.xaml.cs">
+      <DependentUpon>Document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Documents\CreateOrderViewModel.cs" />
+    <Compile Include="UI\Documents\OrderReview\ToolBar.xaml.cs">
+      <DependentUpon>ToolBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dialogs\ProductDialogViewModel.cs" />
+    <Compile Include="UI\Documents\CreateOrder\Validation\IValidationService.cs" />
+    <Compile Include="UI\Documents\CreateOrder\OrderItemViewModel.cs" />
+    <Compile Include="UI\Documents\CreateOrder\Validation\OrderValidator.cs" />
+    <Compile Include="UI\Documents\CreateOrder\Validation\ValidationService.cs" />
+    <Compile Include="UI\Documents\OrderReview\Document.xaml.cs">
+      <DependentUpon>Document.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Documents\OrderReviewViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Translation.resx">
@@ -124,15 +130,23 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="UI\CreateOrder\CreateOrderView.xaml">
+    <Page Include="UI\Dialogs\ProductDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="UI\Documents\CreateOrder\ToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Documents\CreateOrder\Document.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\CreateOrder\ProductDialogView.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="UI\Documents\OrderReview\ToolBar.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderReview\OrderReviewView.xaml">
+    <Page Include="UI\Documents\OrderReview\Document.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -146,5 +160,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

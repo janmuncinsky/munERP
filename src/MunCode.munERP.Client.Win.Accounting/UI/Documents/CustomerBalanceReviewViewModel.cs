@@ -1,4 +1,4 @@
-﻿namespace MunCode.munERP.Client.Win.Accounting.UI.CustomerBalance
+﻿namespace MunCode.munERP.Client.Win.Accounting.UI.Documents
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -9,7 +9,6 @@
     using MunCode.Core.Messaging.Endpoints.Output;
     using MunCode.Core.Wpf.DocumentModel;
     using MunCode.munERP.Client.Win.Accounting.Model.Messages.Requests;
-    using MunCode.munERP.Client.Win.Accounting.Model.Read;
     using MunCode.munERP.Client.Win.Accounting.Resources;
 
     public class CustomerBalanceReviewViewModel : PropertyChangedBase, IDocument, ICanBeInitialized
@@ -24,12 +23,12 @@
 
         public string DisplayName { get; set; } = Translation.menuCustomerBalanceReview;
 
-        public IEnumerable<CustomerBalanceReview> CustomerBalanceReviews { get; private set; }
+        public IEnumerable<Model.Read.CustomerBalanceReview> CustomerBalanceReviews { get; private set; }
 
         public async Task Initialize()
         {
             var request = new GetAllCustomerBalanceReviews();
-            this.CustomerBalanceReviews = await this.bus.Request<GetAllCustomerBalanceReviews, CustomerBalanceReview[]>(request);
+            this.CustomerBalanceReviews = await this.bus.Request<GetAllCustomerBalanceReviews, Model.Read.CustomerBalanceReview[]>(request);
             this.NotifyOfPropertyChange(nameof(this.CustomerBalanceReviews));
         }
     }
