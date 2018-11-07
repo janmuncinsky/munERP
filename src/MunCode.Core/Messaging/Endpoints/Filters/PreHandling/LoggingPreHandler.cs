@@ -20,7 +20,7 @@
         public Task Handle(MessageContext<TMessage> context)
         {
             Guard.NotNull(context, nameof(context));
-            this.logger.LogInformation("About to handle a message - '{0}'.", context);
+            this.logger.LogInformation("About to handle a message - '{context}'.", context);
             return Task.CompletedTask;
         }
     }

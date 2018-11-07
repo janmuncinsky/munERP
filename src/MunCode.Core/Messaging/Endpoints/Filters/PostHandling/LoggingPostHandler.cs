@@ -20,8 +20,7 @@
         public Task Handle(MessageContext<TMessage> context, TResponse response)
         {
             Guard.NotNull(response, nameof(response));
-            Guard.NotNull(context, nameof(context));
-            this.logger.LogInformation("Message successfully handled with response {0}.", response);
+            this.logger.LogInformation("Message successfully handled with response {response}.", response);
             return Task.CompletedTask;
         }
     }
