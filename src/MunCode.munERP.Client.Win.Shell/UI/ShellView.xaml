@@ -33,10 +33,10 @@
             </Menu.ItemContainerStyle>
         </Menu>
         <ContentControl DockPanel.Dock="Top" 
-                        cal:View.Model="{Binding ElementName=DockingManager, Path=ActiveContent.DocumentHost.Document, Mode=OneWay}"
+                        cal:View.Model="{Binding ElementName=DocumentRoot, Path= ActiveContent.Content.DocumentHost.Document, Mode=OneWay}"
                         cal:View.Context="ToolBar"/>
         <ContentControl DockPanel.Dock="Bottom" cal:View.Model="{Binding StatusBarViewModel}"/>
-        <xcad:DockingManager Name="DockingManager" 
+        <xcad:DockingManager 
                              DocumentsSource="{Binding Documents}">
             <xcad:DockingManager.DocumentHeaderTemplate>
                 <DataTemplate>
@@ -57,7 +57,7 @@
                 </Style>
             </xcad:DockingManager.LayoutItemContainerStyle>
             <xcad:DockingManager.Layout>
-                <xcad:LayoutRoot>
+                <xcad:LayoutRoot x:Name="DocumentRoot">
                     <xcad:LayoutPanel>
                         <xcad:LayoutDocumentPane/>
                     </xcad:LayoutPanel>
