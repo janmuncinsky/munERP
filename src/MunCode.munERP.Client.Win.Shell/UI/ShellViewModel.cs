@@ -16,8 +16,6 @@
     {
         private readonly ObservableCollection<OpenedDocument> documents;
 
-        private object activeDocument;
-
         public ShellViewModel(IStatusBarViewModel statusBarViewModel, IEventAggregator eventAggregator, ICollection<IMenuComponent> menuItems)
         {
             Guard.NotNull(statusBarViewModel, nameof(statusBarViewModel));
