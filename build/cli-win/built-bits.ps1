@@ -44,5 +44,14 @@ foreach ($item in $netcoreProjects) {
 	Check-ExitCode
 }
 
-msbuild "src\MunCode.munERP.Client.Win.sln" /p:Configuration=Debug
+$sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+$targetNugetExe = "build\cli-win\nuget.exe"
+Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
+Set-Alias nuget $targetNugetExe -Scope Global -Verbose
+
+$sln="src\MunCode.munERP.Client.Win.sln";
+nuget restore $sln
 Check-ExitCode
+msbuild $sln /p:Configuration=Debug
+Check-ExitCode
+

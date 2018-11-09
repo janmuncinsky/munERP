@@ -14,3 +14,4 @@
 /USOPrivate
 /USOShared
 
+build/cli-win/nuget.exe
