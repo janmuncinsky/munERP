@@ -47,7 +47,7 @@
       <HintPath>..\packages\FluentValidation.8.0.100\lib\net45\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="MunCode.Core">
-      <HintPath>..\..\build\output\bin\MunCode.Core.Ioc.Castle\netstandard2.0\publish\MunCode.Core.dll</HintPath>
+      <HintPath>..\..\build\output\bin\MunCode.Core.Ioc.Castle\net461\publish\MunCode.Core.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

@@ -50,10 +50,10 @@
       <HintPath>..\packages\Castle.Windsor.4.1.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="MunCode.Core">
-      <HintPath>..\..\build\output\bin\MunCode.Core.Ioc.Castle\netstandard2.0\publish\MunCode.Core.dll</HintPath>
+      <HintPath>..\..\build\output\bin\MunCode.Core.Ioc.Castle\net461\publish\MunCode.Core.dll</HintPath>
     </Reference>
     <Reference Include="MunCode.Core.Ioc.Castle">
-      <HintPath>..\..\build\output\bin\MunCode.Core.Ioc.Castle\netstandard2.0\publish\MunCode.Core.Ioc.Castle.dll</HintPath>
+      <HintPath>..\..\build\output\bin\MunCode.Core.Ioc.Castle\net461\publish\MunCode.Core.Ioc.Castle.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

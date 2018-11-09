@@ -1,15 +1,15 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime
 WORKDIR /app
 COPY bin/MunCode.Core.AspNetCore.Host/netcoreapp2.1/publish .
-COPY bin/MunCode.Core.AppHosting.Plugin.Castle/netstandard2.0/publish .
-COPY bin/MunCode.Core.Ioc.Castle/netstandard2.0/publish .
-COPY bin/MunCode.Core.Log4net.Plugin.Castle/netstandard2.0/publish .
-COPY bin/MunCode.Core.Caching.Memory.Plugin.Castle/netstandard2.0/publish .
-COPY bin/MunCode.Core.Messaging.Plugin.Castle/netstandard2.0/publish .
-COPY bin/MunCode.Core.Messaging.EasyNetQ.Plugin.Castle/netstandard2.0/publish .
-COPY bin/MunCode.Core.Messaging.Api.Plugin.Castle/netstandard2.0/publish .
-COPY bin/MunCode.Core.EFCore.Plugin.Castle/netstandard2.0/publish .
-COPY bin/MunCode.munERP.Accounting.Api/netstandard2.0/publish .
-COPY bin/MunCode.munERP.Accounting.Model.EFCore.Plugin.Castle/netstandard2.0/publish .
+COPY bin/MunCode.Core.AppHosting.Plugin.Castle/netcoreapp2.1/publish .
+COPY bin/MunCode.Core.Ioc.Castle/netcoreapp2.1/publish .
+COPY bin/MunCode.Core.Log4net.Plugin.Castle/netcoreapp2.1/publish .
+COPY bin/MunCode.Core.Caching.Memory.Plugin.Castle/netcoreapp2.1/publish .
+COPY bin/MunCode.Core.Messaging.Plugin.Castle/netcoreapp2.1/publish .
+COPY bin/MunCode.Core.Messaging.EasyNetQ.Plugin.Castle/netcoreapp2.1/publish .
+COPY bin/MunCode.Core.Messaging.Api.Plugin.Castle/netcoreapp2.1/publish .
+COPY bin/MunCode.Core.EFCore.Plugin.Castle/netcoreapp2.1/publish .
+COPY bin/MunCode.munERP.Accounting.Api/netcoreapp2.1/publish .
+COPY bin/MunCode.munERP.Accounting.Model.EFCore.Plugin.Castle/netcoreapp2.1/publish .
 
 ENTRYPOINT ["dotnet", "MunCode.Core.AspNetCore.Host.dll"]

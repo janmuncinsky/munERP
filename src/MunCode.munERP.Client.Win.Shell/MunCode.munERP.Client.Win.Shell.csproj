@@ -64,7 +64,7 @@
       <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
     </Reference>
     <Reference Include="MunCode.Core">
-      <HintPath>..\..\build\output\bin\MunCode.Core.Ioc.Castle\netstandard2.0\publish\MunCode.Core.dll</HintPath>
+      <HintPath>..\..\build\output\bin\MunCode.Core.Ioc.Castle\net461\publish\MunCode.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
@@ -200,12 +200,12 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Ioc.Castle\netstandard2.0\publish $(TargetDir) /y
-copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.AppHosting.Plugin.Castle\netstandard2.0\publish $(TargetDir) /y
-copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Log4net.Plugin.Castle\netstandard2.0\publish $(TargetDir) /y
-copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Messaging.Plugin.Castle\netstandard2.0\publish $(TargetDir) /y
-copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Messaging.Http.Plugin.Castle\netstandard2.0\publish $(TargetDir) /y
-copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Caching.Memory.Plugin.Castle\netstandard2.0\publish $(TargetDir) /y
+    <PostBuildEvent>copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Ioc.Castle\net461\publish $(TargetDir) /y
+copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.AppHosting.Plugin.Castle\net461\publish $(TargetDir) /y
+copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Log4net.Plugin.Castle\net461\publish $(TargetDir) /y
+copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Messaging.Plugin.Castle\net461\publish $(TargetDir) /y
+copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Messaging.Http.Plugin.Castle\net461\publish $(TargetDir) /y
+copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Caching.Memory.Plugin.Castle\net461\publish $(TargetDir) /y
 copy $(ProjectDir)..\..\build\output\bin\MunCode.Core.Caliburn.Plugin.Castle $(TargetDir) /y
 copy $(ProjectDir)..\..\build\output\bin\MunCode.munERP.Client.Win.Sales $(TargetDir) /y
 copy $(ProjectDir)..\..\build\output\bin\MunCode.munERP.Client.Win.Accounting $(TargetDir) /y</PostBuildEvent>
