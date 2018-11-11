@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MunCode.Core.EFCore\MunCode.Core.EFCore.csproj" />
     <ProjectReference Include="..\MunCode.Core\MunCode.Core.csproj" />
     <ProjectReference Include="..\MunCode.munERP.Accounting.Model\MunCode.munERP.Accounting.Model.csproj" />
   </ItemGroup>
