@@ -7,6 +7,8 @@
     using EasyNetQ.Producer;
     using EasyNetQ.Topology;
 
+    using MunCode.Core.Messaging.Messages;
+
     public class TransactionalRpc : Rpc
     {
         private readonly ITimeoutStrategy timeoutStrategy;
@@ -26,16 +28,20 @@
         {
             this.declaredQueues.GetOrAdd(routingKey, key => this.advancedBus.QueueDeclare(routingKey));
             var messageType = typeof(TRequest);
+            var timeout = request is ICommand ? null : (this.timeoutStrategy.GetTimeoutSeconds(messageType) * 1000UL).ToString();
             var message = new Message<TRequest>(request)
                                             {
                                                 Properties =
                                                     {
                                                         ReplyTo = returnQueueName,
                                                         CorrelationId = correlationId.ToString(),
-                                                        // Expiration = (this.timeoutStrategy.GetTimeoutSeconds(messageType) * 1000UL).ToString(),
                                                         DeliveryMode = this.messageDeliveryModeStrategy.GetDeliveryMode(messageType)
                                                     }
                                             };
+            if (timeout != null)
+            {
+                message.Properties.Expiration = timeout;
+            }
 
             this.advancedBus.Publish(Exchange.GetDefault(), routingKey, false, message);
         }
